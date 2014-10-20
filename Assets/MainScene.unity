@@ -1536,6 +1536,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 611711932}
+  lastPoint: {x: 0, y: 0, z: 0}
+  isDrawing: 0
 --- !u!4 &1472217236
 Transform:
   m_ObjectHideFlags: 0
@@ -2889,7 +2891,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: .0199999996
   far clip plane: 20000
   field of view: 60
   orthographic: 0
