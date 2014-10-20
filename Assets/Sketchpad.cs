@@ -43,7 +43,7 @@ public class Sketchpad : MonoBehaviour {
 		// TODO: use a particle system here, not spheres.
 		float num = 50f; // TODO: use line length, and ignore large gaps in time / space
 		for (int i=0; i<num; i++) {
-			Vector3 p = Vector3.Slerp (p1, p2, i / num);
+			Vector3 p = Vector3.Lerp (p1, p2, i / num);
 			DrawPoint (p);
 		}
 	}
