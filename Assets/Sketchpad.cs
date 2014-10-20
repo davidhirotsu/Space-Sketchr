@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Sketchpad : MonoBehaviour {
 
-	public GameObject particle;
-	public Vector3 lastPoint;
-	public bool isDrawing = false;
+	Vector3 lastPoint;
+	bool isDrawing = false;
+	List<ParticleSystem.Particle> cloud = new List<ParticleSystem.Particle>();
+	bool needsUpdate = false;
 
 	void Start () {
-	
+
 	}
 
 	void Update () {
@@ -24,15 +26,22 @@ public class Sketchpad : MonoBehaviour {
 				}
 				lastPoint = hit.point;
 				isDrawing = true;
+				needsUpdate = true;
 			}
 		} else {
 			isDrawing = false;
+		}
+
+		if (needsUpdate) {
+ 			var cloudArray = cloud.ToArray();
+			particleSystem.SetParticles (cloudArray, cloudArray.Length);
+			needsUpdate = false;
 		}
 	}
 
 	void DrawLine (Vector3 p1, Vector3 p2) {
 		// TODO: use a particle system here, not spheres.
-		float num = 20f; // TODO: use line length, and ignore large gaps in time / space
+		float num = 50f; // TODO: use line length, and ignore large gaps in time / space
 		for (int i=0; i<num; i++) {
 			Vector3 p = Vector3.Slerp (p1, p2, i / num);
 			DrawPoint (p);
@@ -40,6 +49,11 @@ public class Sketchpad : MonoBehaviour {
 	}
 
 	void DrawPoint (Vector3 p) {
-		Instantiate (particle, p, Quaternion.identity);
+		var particle = new ParticleSystem.Particle ();
+		particle.position = p;
+		particle.color = new Color (1f, 1f, 1f, 1f);
+		particle.size = 0.03f;
+//		Debug.Log (particle.ToString ());
+		cloud.Add (particle);
 	}
 }
