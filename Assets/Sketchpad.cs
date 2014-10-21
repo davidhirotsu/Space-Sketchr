@@ -51,7 +51,7 @@ public class Sketchpad : MonoBehaviour {
 		var particle = new ParticleSystem.Particle ();
 		particle.position = p;
 		particle.color = new Color (1f, 1f, 1f, 1f);
-		particle.size = 0.03f;
+		particle.size = 0.02f * Random.Range(0.8f,1f);
 		cloud.Add (particle);
 	}
 
@@ -65,7 +65,7 @@ public class Sketchpad : MonoBehaviour {
 			ClearPoints();
 		}
 
-		togglePlaneVisibility = GUI.Toggle (new Rect (10, 150, 100, 100), togglePlaneVisibility, "Plane");
+//		togglePlaneVisibility = GUI.Toggle (new Rect (10, 150, 100, 100), togglePlaneVisibility, "Plane");
 		planeObject.renderer.enabled = togglePlaneVisibility;
 	}
 }
