@@ -11,7 +11,7 @@ public class Sketchpad : MonoBehaviour {
 	List<ParticleSystem.Particle> cloud = new List<ParticleSystem.Particle>();
 	bool needsUpdate = false;
 	bool togglePlaneVisibility = false;
-	
+
 	void Update () {
 		if (Input.GetMouseButton (0)) {
 			int layerMask = 1 << 8; // Maps to CanvasPlane layer
@@ -61,7 +61,7 @@ public class Sketchpad : MonoBehaviour {
 	}
 
 	void OnGUI () {
-		if (GUI.Button(new Rect(10, 10, 100, 100), "Clear")) {
+		if (GUI.Button(new Rect(10, 10, 100, 50), "Clear")) {
 			ClearPoints();
 		}
 

@@ -131,13 +131,13 @@ namespace Tango
         /// be build with Unity Android Pro, if it wasn't
         /// built this way originally.
         /// </summary>
-        private void OnGUI()
-        {
-            GUI.Label(new Rect(Common.UI_LABEL_START_X, 
-                               Common.UI_LABEL_START_Y, 
-                               Common.UI_LABEL_SIZE_X , 
-                               Common.UI_LABEL_SIZE_Y), "<size=20>Tango Service Version : " + m_tangoServiceVersion + "</size>");
-        }
+//        private void OnGUI()
+//        {
+//            GUI.Label(new Rect(Common.UI_LABEL_START_X, 
+//                               Common.UI_LABEL_START_Y, 
+//                               Common.UI_LABEL_SIZE_X , 
+//                               Common.UI_LABEL_SIZE_Y), "<size=20>Tango Service Version : " + m_tangoServiceVersion + "</size>");
+//        }
 
         /// <summary>
         /// Shutdown this instance.
