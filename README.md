@@ -25,6 +25,15 @@ The actual drawing logic, in `Sketchpad.cs`, is fairly standard unity code. Here
 
 Check out the source of `Sketchpad.cs` for more detail. It's not a ton of code.
 
+The final change I made is to remove the tango sdk info, which is currently not toggleable. So it requires going into `TangoSDK/Core/Scripts/TangoWrappers/TangoApplication` and commenting out `OnGUI` for that class. (This is the script on the `Tango` object that sits in the scene)
+
+```csharp
+//        private void OnGUI()
+//        {
+//            ...
+//        }
+```
+
 ### Todo
 
 Take pretty screenshots if this gets published.
