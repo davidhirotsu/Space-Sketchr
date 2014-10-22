@@ -6,11 +6,9 @@ public class Sketchpad : MonoBehaviour {
 
 	public Transform planeObject;
 
-	Vector3 lastPoint;
-	bool isDrawing = false;
+	Vector3? lastPoint;
 	List<ParticleSystem.Particle> pointList = new List<ParticleSystem.Particle>();
 	bool particleSystemNeedsUpdate = false;
-	bool togglePlaneVisibility = false;
 	
 	void Update () {
 		CheckUserInput ();
@@ -24,20 +22,19 @@ public class Sketchpad : MonoBehaviour {
 	void CheckUserInput () {
 		if (Input.GetMouseButton (0)) {
 			ApplyUserInput ();
-			isDrawing = true;
 		} else {
-			isDrawing = false;
+			EndUserInput ();
 		}
 	}
 
 	void ApplyUserInput () {
-		int layerMask = 1 << 8;
 		// Maps to CanvasPlane layer
+		var layerMask = 1 << 8;
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit, 20f, layerMask)) {
-			if (isDrawing) {
-				DrawLine (lastPoint, hit.point);
+			if (lastPoint.HasValue) {
+				DrawLine (lastPoint.Value, hit.point);
 			} else {
 				DrawPoint (hit.point);
 			}
@@ -46,11 +43,15 @@ public class Sketchpad : MonoBehaviour {
 		}
 	}
 
+	void EndUserInput () {
+		lastPoint = null;
+	}
+
 	void DrawLine (Vector3 p1, Vector3 p2) {
-		float dotsPerWorldSpace = 100f;
-		float num = dotsPerWorldSpace * (p1 - p2).magnitude;
-		for (int i = 0; i < num; i++) {
-			Vector3 p = Vector3.Lerp (p1, p2, i / num);
+		var dotsPerWorldSpace = 100f;
+		var num = dotsPerWorldSpace * (p1 - p2).magnitude;
+		for (var i = 0; i < num; i++) {
+			var p = Vector3.Lerp (p1, p2, i / num);
 			DrawPoint (p);
 		}
 	}
