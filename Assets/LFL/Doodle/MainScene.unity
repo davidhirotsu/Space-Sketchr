@@ -1172,7 +1172,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 396041987}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: .713528872, y: -.191783667, z: -.18163538}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1194,7 +1194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &650542862
 Renderer:
   m_ObjectHideFlags: 0
@@ -1264,7 +1264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1104211691
 Renderer:
   m_ObjectHideFlags: 0
@@ -1353,7 +1353,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
+      propertyPath: m_configType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
+      propertyPath: m_testADFExporting
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
@@ -1478,7 +1486,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2018285846}
   m_Father: {fileID: 1922214434}
   m_RootOrder: 1
 --- !u!199 &1472217237
@@ -2575,9 +2584,10 @@ GameObject:
   - 4: {fileID: 1604500239}
   - 114: {fileID: 1604500238}
   - 114: {fileID: 1604500237}
+  - 114: {fileID: 1604500240}
   - 114: {fileID: 1604500236}
   m_Layer: 0
-  m_Name: Tango
+  m_Name: Tango Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2586,13 +2596,13 @@ GameObject:
 --- !u!114 &1604500236
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
+  m_PrefabParentObject: {fileID: 11400004, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
     type: 2}
   m_PrefabInternal: {fileID: 1372430219}
   m_GameObject: {fileID: 1604500235}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9f0280553c6449fae0bd32bab2b262, type: 3}
+  m_Script: {fileID: 11500000, guid: d49de775c62b14d5b92847472d2ae52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1604500237
@@ -2602,11 +2612,13 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1372430219}
   m_GameObject: {fileID: 1604500235}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 492e8f98b369d4d1f8e7e4b926d03d8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 15887e04b90284628a2ba271b264318d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_updateFrequency: 1
+  m_FPSText: 
 --- !u!114 &1604500238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2622,6 +2634,9 @@ MonoBehaviour:
   m_enableMotionTracking: 1
   m_enableDepth: 0
   m_motionTrackingAutoReset: 1
+  m_enableAreaLearning: 1
+  m_configType: 2
+  m_testADFExporting: 0
 --- !u!4 &1604500239
 Transform:
   m_ObjectHideFlags: 0
@@ -2634,6 +2649,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!114 &1604500240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400008, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1372430219}
+  m_GameObject: {fileID: 1604500235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51037d11058c499b8f30df780881cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1621907209
 GameObject:
   m_ObjectHideFlags: 0
@@ -3732,7 +3759,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1621907209}
   m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: -190.254547, y: 80.8278809, z: 109.534264}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3834,7 +3861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e5e52cebc4dbf44ba13e3c7af730949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_movementScale: 50
+  m_movementScale: 5
+  m_useADF: 0
 --- !u!4 &1922214434
 Transform:
   m_ObjectHideFlags: 0
@@ -3847,7 +3875,6 @@ Transform:
   m_Children:
   - {fileID: 1721925564}
   - {fileID: 1472217236}
-  - {fileID: 2018285846}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!1 &2018285841
@@ -3932,5 +3959,5 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1922214434}
-  m_RootOrder: 2
+  m_Father: {fileID: 1472217236}
+  m_RootOrder: 0

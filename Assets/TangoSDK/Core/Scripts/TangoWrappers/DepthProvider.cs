@@ -45,7 +45,7 @@ namespace Tango
         /// </summary>
         private struct DepthAPI
         {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             [DllImport(Common.TANGO_UNITY_DLL)]
             public static extern int TangoService_connectOnXYZijAvailable(TangoService_onDepthAvailable onDepthAvailalble);
 

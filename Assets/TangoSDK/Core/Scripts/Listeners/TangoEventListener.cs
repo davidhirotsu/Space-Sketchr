@@ -23,8 +23,9 @@ public abstract class TangoEventListener : MonoBehaviour
     /// </summary>
     public virtual void SetCallback()
     {
-        m_onEventAvaialableCallback = new TangoEvents.TangoService_onEventAvailable(_onEventAvailable);
-        TangoEvents.SetCallback(m_onEventAvaialableCallback);
+		m_onEventAvaialableCallback = new TangoEvents.TangoService_onEventAvailable(_onEventAvailable);
+		TangoEvents.SetCallback(m_onEventAvaialableCallback);
+		Debug.Log("------------------------Tango event callback set!");
     }
 
     /// <summary>

@@ -24,7 +24,7 @@ public abstract class DepthListener : MonoBehaviour
     public virtual void SetCallback()
     {
         m_onDepthAvailableCallback = new Tango.DepthProvider.TangoService_onDepthAvailable(_OnDepthAvailable);
-        Tango.DepthProvider.SetCallback(m_onDepthAvailableCallback);
+		Tango.DepthProvider.SetCallback(m_onDepthAvailableCallback);
     }
 
     /// <summary>

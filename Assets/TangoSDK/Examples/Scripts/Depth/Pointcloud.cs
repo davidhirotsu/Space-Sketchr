@@ -23,6 +23,8 @@ public class Pointcloud : DepthListener
     [HideInInspector]
     public int m_pointsCount = 0;
 
+	public bool m_useADF = false;
+
     // Some const value.
     private const int DEPTH_BUFFER_WIDTH = 320;
     private const int DEPTH_BUFFER_HEIGHT = 180;
@@ -42,6 +44,14 @@ public class Pointcloud : DepthListener
     private float m_timeSinceLastDepthFrame = 0.0f;
     private int m_numberOfDepthSamples = 0;
     private float m_previousDepthDeltaTime = 0.0f;
+
+	private TangoApplication m_tangoApplication;
+	private string m_applicationVersion;
+
+	public string GetTangoServiceVersion()
+	{
+		return m_applicationVersion;
+	}
 
     /// <summary>
     /// Use this for initialization.
@@ -66,6 +76,31 @@ public class Pointcloud : DepthListener
         transform.localScale = new Vector3(transform.localScale.x,
                                            transform.localScale.y * -1.0f,
                                            transform.localScale.z);
+
+		m_tangoApplication = FindObjectOfType<TangoApplication>();
+		
+		if(m_tangoApplication != null)
+		{
+			m_tangoApplication.InitApplication();
+			
+			if(m_useADF)
+			{
+				// loading last recorded ADF
+				m_tangoApplication.SetFunctionality(PoseProvider.GetLatestADFUUID().GetStringDataUUID());
+			}
+			else
+			{
+				m_tangoApplication.SetFunctionality(string.Empty);
+			}
+			
+			m_tangoApplication.ConnectToService();
+			
+			m_applicationVersion = m_tangoApplication.GetAndroidApplicationVersion();
+		}
+		else
+		{
+			UnityEngine.Debug.Log("No Tango Manager found in scene.");
+		}
     }
     
     /// <summary>

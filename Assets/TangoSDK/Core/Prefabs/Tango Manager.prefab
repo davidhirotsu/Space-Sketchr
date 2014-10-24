@@ -10,9 +10,10 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400008}
+  - 114: {fileID: 11400004}
   m_Layer: 0
-  m_Name: Tango
+  m_Name: Tango Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,12 +37,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 492e8f98b369d4d1f8e7e4b926d03d8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 15887e04b90284628a2ba271b264318d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400002
+  m_updateFrequency: 1
+  m_FPSText: 
+--- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,7 +52,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9f0280553c6449fae0bd32bab2b262, type: 3}
+  m_Script: {fileID: 11500000, guid: d49de775c62b14d5b92847472d2ae52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11400006
@@ -66,6 +69,20 @@ MonoBehaviour:
   m_enableMotionTracking: 1
   m_enableDepth: 0
   m_motionTrackingAutoReset: 1
+  m_enableAreaLearning: 1
+  m_configType: 0
+  m_testADFExporting: 1
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51037d11058c499b8f30df780881cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

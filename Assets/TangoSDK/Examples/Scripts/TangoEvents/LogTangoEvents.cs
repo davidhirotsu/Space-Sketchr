@@ -9,12 +9,12 @@ public class LogTangoEvents : TangoEventListener
 
 	// Use this for initialization
 	void Start ()
-    {
+	{
         m_lastTangoEventIssued = string.Empty;
 	}
 	
     protected override void _onEventAvailable(IntPtr callbackContext, TangoEvent tangoEvent)
     {
-        Debug.Log("Tango event fired : " + tangoEvent.description);
+        Debug.Log("Tango event fired : " + tangoEvent.event_value);
     }
 }

@@ -251,6 +251,14 @@ Prefab:
       propertyPath: m_enableMotionTracking
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
+      propertyPath: m_testADFExporting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
+      propertyPath: m_enableAreaLearning
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
@@ -605,7 +613,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1414115570}
   - 114: {fileID: 1414115574}
-  - 114: {fileID: 1414115571}
+  - 114: {fileID: 1414115573}
+  - 114: {fileID: 1414115572}
   m_Layer: 0
   m_Name: Tango
   m_TagString: Untagged
@@ -625,16 +634,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!114 &1414115571
+--- !u!114 &1414115572
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
+  m_PrefabParentObject: {fileID: 11400004, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
     type: 2}
   m_PrefabInternal: {fileID: 396251089}
   m_GameObject: {fileID: 1414115569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c9f0280553c6449fae0bd32bab2b262, type: 3}
+  m_Script: {fileID: 11500000, guid: d49de775c62b14d5b92847472d2ae52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1414115573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400008, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
+    type: 2}
+  m_PrefabInternal: {fileID: 396251089}
+  m_GameObject: {fileID: 1414115569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b51037d11058c499b8f30df780881cf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1414115574
@@ -652,6 +673,9 @@ MonoBehaviour:
   m_enableMotionTracking: 0
   m_enableDepth: 1
   m_motionTrackingAutoReset: 0
+  m_enableAreaLearning: 0
+  m_configType: 0
+  m_testADFExporting: 0
 --- !u!1 &1438755910
 GameObject:
   m_ObjectHideFlags: 0

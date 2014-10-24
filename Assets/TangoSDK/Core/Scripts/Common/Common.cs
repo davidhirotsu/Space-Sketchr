@@ -25,6 +25,7 @@ namespace Tango
         /// </summary>
         public struct ErrorType
         {
+            public static readonly int TANGO_INVALID = -2;
             public static readonly int TANGO_ERROR = -1;
             public static readonly int TANGO_SUCCESS = 0;
         }
@@ -33,13 +34,12 @@ namespace Tango
 
         public const float UI_LABEL_START_X = 15.0f;
         public const float UI_LABEL_START_Y = 15.0f;
-        public const float UI_LABEL_SIZE_X = 700.0f;
-        public const float UI_LABEL_SIZE_Y = 50.0f;
-        public const float UI_LABEL_GAP_Y = 5.0f;
-        public const float UI_BUTTON_START_Y = UI_BUTTON_SIZE_Y + UI_LABEL_START_Y * 2;
-        public const float UI_BUTTON_SIZE_X = 200.0f;
-        public const float UI_BUTTON_SIZE_Y = 100.0f;
-        public const float UI_BUTTON_GAP_X = 5.0f;
+        public const float UI_LABEL_SIZE_X = 1000.0f;
+        public const float UI_LABEL_SIZE_Y = 25.0f;
+        public const float UI_LABEL_GAP_Y = 3.0f;
+        public const float UI_BUTTON_SIZE_X = 125.0f;
+        public const float UI_BUTTON_SIZE_Y = 65.0f;
+		public const float UI_BUTTON_GAP_X = 5.0f;
         public const float UI_CAMERA_BUTTON_OFFSET = UI_BUTTON_SIZE_X + UI_BUTTON_GAP_X; 
         public const float UI_LABEL_OFFSET = UI_LABEL_GAP_Y + UI_LABEL_SIZE_Y;
 
@@ -47,10 +47,18 @@ namespace Tango
         public const float UI_TANGO_VERSION_Y = UI_LABEL_START_Y;
         public const float UI_TANGO_APP_SPECIFIC_START_X = UI_TANGO_VERSION_X;
         public const float UI_TANGO_APP_SPECIFIC_START_Y = UI_TANGO_VERSION_Y + (UI_LABEL_OFFSET * 2);
+
+		public const string UX_SERVICE_VERSION = "Service Version: {0}";
+		public const string UX_TANGO_SERVICE_VERSION = "Tango Service Version: {0}";
+		public const string UX_TANGO_SYSTEM_EVENT = "Tango System Event: {0}";
+		public const string UX_TARGET_TO_BASE_FRAME = "Target->{0}, Base->{1}:";
+		public const string UX_STATUS = "\tStatus: {0}, Count: {1}, Delta Time(ms): {2}, Pose(m):[{3}], Quat:[{4}]";
         
-    #if (UNITY_EDITOR || UNITY_STANDALONE_OSX)
+        public const int UUID_LENGTH = 37;
+        
+    #if (UNITY_EDITOR)
         private static bool m_mirroring = true; 
-    #elif (UNITY_IPHONE || UNITY_ANDROID) 
+    #elif (UNITY_ANDROID) 
         private static bool m_mirroring = false; 
     #else 
         private static bool m_mirroring = false;
@@ -125,18 +133,6 @@ namespace Tango
         {
             Vector2 resolution = GetWindowResolution();
             return resolution.x / resolution.y;
-        }
-        
-        /// <summary>
-        /// Calls Application.Quit.
-        /// </summary>
-        public static void Quit()
-        {   
-            #if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-            #else
-            Application.Quit();
-            #endif
         }
     }
 }
