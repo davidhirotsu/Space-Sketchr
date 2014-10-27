@@ -191,70 +191,70 @@ public class TangoSketchController : PoseListener
 		m_isDirty = true;
 	}
 	
-	void OnGUI()
-	{
-		Color oldColor = GUI.color;
-		GUI.color = Color.black;
-		
-		GUI.Label(new Rect(Common.UI_LABEL_START_X, 
-		                   Common.UI_LABEL_START_Y, 
-		                   Common.UI_LABEL_SIZE_X , 
-		                   Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_TANGO_SERVICE_VERSION, m_applicationVersion) + "</size>");
-		
-		// MOTION TRACKING
-		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
-		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET, 
-		                    Common.UI_LABEL_SIZE_X , 
-		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_TARGET_TO_BASE_FRAME,
-		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_DEVICE,
-		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_START_OF_SERVICE) + "</size>");
-		
-		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
-		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 2, 
-		                    Common.UI_LABEL_SIZE_X , 
-		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_STATUS,
-		                                                     m_status[0],
-		                                                     m_frameCount[0],
-		                                                     m_frameDeltaTime[0],
-		                                                     m_tangoPosition[0],
-		                                                     m_tangoRotation[0]) + "</size>");
-		
-		// ADF
-		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
-		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 3, 
-		                    Common.UI_LABEL_SIZE_X , 
-		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_TARGET_TO_BASE_FRAME,
-		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_DEVICE,
-		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_AREA_DESCRIPTION) + "</size>");
-		
-		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
-		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 4, 
-		                    Common.UI_LABEL_SIZE_X , 
-		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_STATUS,
-		                                                     m_status[1],
-		                                                     m_frameCount[1],
-		                                                     m_frameDeltaTime[1],
-		                                                     m_tangoPosition[1],
-		                                                     m_tangoRotation[1]) + "</size>");
-		
-		// RELOCALIZATION
-		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
-		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 5, 
-		                    Common.UI_LABEL_SIZE_X , 
-		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_TARGET_TO_BASE_FRAME,
-		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_AREA_DESCRIPTION,
-		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_START_OF_SERVICE) + "</size>");
-		
-		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
-		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 6, 
-		                    Common.UI_LABEL_SIZE_X , 
-		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_STATUS,
-		                                                     m_status[2],
-		                                                     m_frameCount[2],
-		                                                     m_frameDeltaTime[2],
-		                                                     m_tangoPosition[2],
-		                                                     m_tangoRotation[2]) + "</size>");
-		
-		GUI.color = oldColor;
-	}
+//	void OnGUI()
+//	{
+//		Color oldColor = GUI.color;
+//		GUI.color = Color.black;
+//		
+//		GUI.Label(new Rect(Common.UI_LABEL_START_X, 
+//		                   Common.UI_LABEL_START_Y, 
+//		                   Common.UI_LABEL_SIZE_X , 
+//		                   Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_TANGO_SERVICE_VERSION, m_applicationVersion) + "</size>");
+//		
+//		// MOTION TRACKING
+//		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
+//		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET, 
+//		                    Common.UI_LABEL_SIZE_X , 
+//		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_TARGET_TO_BASE_FRAME,
+//		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_DEVICE,
+//		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_START_OF_SERVICE) + "</size>");
+//		
+//		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
+//		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 2, 
+//		                    Common.UI_LABEL_SIZE_X , 
+//		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_STATUS,
+//		                                                     m_status[0],
+//		                                                     m_frameCount[0],
+//		                                                     m_frameDeltaTime[0],
+//		                                                     m_tangoPosition[0],
+//		                                                     m_tangoRotation[0]) + "</size>");
+//		
+//		// ADF
+//		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
+//		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 3, 
+//		                    Common.UI_LABEL_SIZE_X , 
+//		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_TARGET_TO_BASE_FRAME,
+//		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_DEVICE,
+//		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_AREA_DESCRIPTION) + "</size>");
+//		
+//		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
+//		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 4, 
+//		                    Common.UI_LABEL_SIZE_X , 
+//		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_STATUS,
+//		                                                     m_status[1],
+//		                                                     m_frameCount[1],
+//		                                                     m_frameDeltaTime[1],
+//		                                                     m_tangoPosition[1],
+//		                                                     m_tangoRotation[1]) + "</size>");
+//		
+//		// RELOCALIZATION
+//		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
+//		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 5, 
+//		                    Common.UI_LABEL_SIZE_X , 
+//		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_TARGET_TO_BASE_FRAME,
+//		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_AREA_DESCRIPTION,
+//		                                                     TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_START_OF_SERVICE) + "</size>");
+//		
+//		GUI.Label( new Rect(Common.UI_LABEL_START_X, 
+//		                    Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 6, 
+//		                    Common.UI_LABEL_SIZE_X , 
+//		                    Common.UI_LABEL_SIZE_Y), "<size=15>" + String.Format(Common.UX_STATUS,
+//		                                                     m_status[2],
+//		                                                     m_frameCount[2],
+//		                                                     m_frameDeltaTime[2],
+//		                                                     m_tangoPosition[2],
+//		                                                     m_tangoRotation[2]) + "</size>");
+//		
+//		GUI.color = oldColor;
+//	}
 }
