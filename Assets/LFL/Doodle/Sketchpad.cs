@@ -75,14 +75,8 @@ public class Sketchpad : MonoBehaviour {
 		particleSystem.SetParticles (asArray, asArray.Length);
 	}
 
-	void ClearPoints () {
+	public void ClearPoints () {
 		pointList.Clear ();
 		particleSystemNeedsUpdate = true;
-	}
-
-	void OnGUI () {
-		if (GUI.Button(new Rect(10, 10, 100, 50), "Clear")) {
-			ClearPoints();
-		}
 	}
 }
