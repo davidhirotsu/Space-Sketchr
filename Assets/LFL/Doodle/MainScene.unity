@@ -1254,7 +1254,7 @@ RectTransform:
   m_Children:
   - {fileID: 1908716360}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -1466,62 +1466,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1322114370}
   m_HideIfInvisible: 0
---- !u!1001 &1372430219
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400006, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_configType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400006, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_testADFExporting
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-  m_RootGameObject: {fileID: 1604500235}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &1445006814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2728,93 +2672,6 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
---- !u!1 &1604500235
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-  m_PrefabInternal: {fileID: 1372430219}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1604500239}
-  - 114: {fileID: 1604500238}
-  - 114: {fileID: 1604500237}
-  - 114: {fileID: 1604500240}
-  - 114: {fileID: 1604500236}
-  m_Layer: 0
-  m_Name: Tango Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1604500236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400004, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1372430219}
-  m_GameObject: {fileID: 1604500235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d49de775c62b14d5b92847472d2ae52d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1604500237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1372430219}
-  m_GameObject: {fileID: 1604500235}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15887e04b90284628a2ba271b264318d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_updateFrequency: 1
-  m_FPSText: 
---- !u!114 &1604500238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1372430219}
-  m_GameObject: {fileID: 1604500235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f51549b4778944861a78b99341a9c5db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_enableMotionTracking: 1
-  m_enableDepth: 0
-  m_motionTrackingAutoReset: 1
-  m_enableAreaLearning: 1
-  m_configType: 2
-  m_testADFExporting: 0
---- !u!4 &1604500239
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: ff519ec4bed0442dc9bf3a21a9777c4d, type: 2}
-  m_PrefabInternal: {fileID: 1372430219}
-  m_GameObject: {fileID: 1604500235}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
---- !u!114 &1604500240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400008, guid: ff519ec4bed0442dc9bf3a21a9777c4d,
-    type: 2}
-  m_PrefabInternal: {fileID: 1372430219}
-  m_GameObject: {fileID: 1604500235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b51037d11058c499b8f30df780881cf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1621907209
 GameObject:
   m_ObjectHideFlags: 0
@@ -4059,7 +3916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &1908716359
 GameObject:
   m_ObjectHideFlags: 0
@@ -4185,7 +4042,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1922214434}
-  - 114: {fileID: 1922214433}
   m_Layer: 0
   m_Name: DrawingRig
   m_TagString: Untagged
@@ -4193,19 +4049,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1922214433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1922214432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c8af1a26df21477aae4077d1628166d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_movementScale: 4
-  m_useADF: 0
 --- !u!4 &1922214434
 Transform:
   m_ObjectHideFlags: 0
