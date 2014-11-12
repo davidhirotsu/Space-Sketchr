@@ -1362,6 +1362,7 @@ MonoBehaviour:
   m_enableDepth: 0
   m_motionTrackingAutoReset: 1
   m_enableAreaLearning: 1
+  m_enableADFSaveLoad: 0
 --- !u!4 &1028129875
 Transform:
   m_ObjectHideFlags: 0
