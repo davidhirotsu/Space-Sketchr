@@ -78,5 +78,5 @@ public abstract class IBaseCamera : MonoBehaviour
     /// </summary>
     /// <param name="targetObject"> Target object of the camera.</param>
     /// <param name="offset"> Offset from the Target object.</param>
-    public abstract void SetCamera(GameObject targetObject, Vector3 offset, float smoothTime = 0.05f);
+    public abstract void SetCamera(GameObject targetObject, Vector3 offset, float smoothTime);
 }

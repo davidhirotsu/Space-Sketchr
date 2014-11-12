@@ -53,6 +53,11 @@ public class SampleController : PoseListener
     private bool m_isDirty = false;
 
 	private string m_tangoServiceVersionName = string.Empty;
+
+	public bool IsLocalized()
+	{
+		return m_isRelocalized;
+	}
     
     /// <summary>
     /// Initialize the controller.
@@ -117,11 +122,12 @@ public class SampleController : PoseListener
     {
         #if UNITY_ANDROID && !UNITY_EDITOR
         if (m_isDirty)
-        {
+		{
+			// This rotation needs to be put into Unity coordinate space.
+			Quaternion rotationFix = Quaternion.Euler(90.0f, 0.0f, 0.0f);
+
             if (!m_isRelocalized) 
             {
-                // This rotation needs to be put into Unity coordinate space.
-                Quaternion rotationFix = Quaternion.Euler(90.0f, 0.0f, 0.0f);
                 Quaternion axisFix = Quaternion.Euler(-m_tangoRotation[0].eulerAngles.x,
                                                       -m_tangoRotation[0].eulerAngles.z,
                                                       m_tangoRotation[0].eulerAngles.y);
@@ -131,8 +137,6 @@ public class SampleController : PoseListener
             }
             else 
             {
-                // This rotation needs to be put into Unity coordinate space.
-                Quaternion rotationFix = Quaternion.Euler(90.0f, 0.0f, 0.0f);
                 Quaternion axisFix = Quaternion.Euler(-m_tangoRotation[1].eulerAngles.x,
                                                       -m_tangoRotation[1].eulerAngles.z,
                                                       m_tangoRotation[1].eulerAngles.y);
@@ -186,6 +190,8 @@ public class SampleController : PoseListener
             currentIndex = 2;
         }
 
+		m_isRelocalized = (currentIndex == 1 || currentIndex == 2);
+
         // Cache the position and rotation to be set in the update function.
         // This needs to be done because this callback does not
         // happen in the main game thread.
@@ -215,7 +221,7 @@ public class SampleController : PoseListener
         m_isDirty = true;
     }
     
-    void OnGUI()
+    private void OnGUI()
     {
 		if(TangoApplication.HasRequestedPermissions())
 		{

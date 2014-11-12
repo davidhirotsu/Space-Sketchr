@@ -30,7 +30,8 @@ namespace Tango
         public bool m_enableMotionTracking = true;
         public bool m_enableDepth = true;
         public bool m_motionTrackingAutoReset = true;
-		public bool m_enableAreaLearning = true;
+		public bool m_enableAreaLearning = false;
+		public bool m_enableADFSaveLoad = false;
 		private bool m_areaLearningSetSucces = false;
 
 		private static string m_tangoServiceVersion = string.Empty;
@@ -55,6 +56,7 @@ namespace Tango
 
 		private bool m_isServiceConnected = false;
 		private bool m_shouldReconnectService = false;
+		private bool m_wasConnectedOnPause = false;
 
 		/// <summary>
 		/// Gets the tango service version.
@@ -91,9 +93,30 @@ namespace Tango
 		public void RequestNecessaryPermissions()
 		{
 			Debug.Log("-------------------------------------Checking permissions"); 
-			bool motionTrackingPermissions = _RequestPermissions(Common.TANGO_MOTION_TRACKING_PERMISSIONS);
-			bool adfLoadSavePermissions = _RequestPermissions(Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS);
-			m_permissionsGranted = (motionTrackingPermissions && adfLoadSavePermissions);
+
+			bool anyPermissionDenied = false;
+
+			if(m_enableMotionTracking)
+			{
+				bool motionTrackingPermissions = _RequestPermissions(Common.TANGO_MOTION_TRACKING_PERMISSIONS);
+
+				if(!motionTrackingPermissions)
+				{
+					anyPermissionDenied = true;
+				}
+			}
+
+			if(m_enableAreaLearning || m_enableADFSaveLoad)
+			{
+				bool adfLoadSavePermissions = _RequestPermissions(Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS);
+				
+				if(!adfLoadSavePermissions)
+				{
+					anyPermissionDenied = true;
+				}
+			}
+
+			m_permissionsGranted = !anyPermissionDenied;
 			Debug.Log("-------------------------------------Permissions were accepted = " + m_permissionsGranted); 
 			m_permissionsRequested = true;
 		}
@@ -147,12 +170,6 @@ namespace Tango
 			_TangoDisconnect();
 		}
 
-		void OnDestroy()
-		{
-			TangoConfig.Free();
-			_TangoDisconnect();
-		}
-
 		/// <summary>
 		/// Callback for when Unity app goes to background/foreground states.
 		/// </summary>
@@ -161,19 +178,37 @@ namespace Tango
 		{
 			if(!isPaused)
 			{
+				Debug.Log("OnResume");
 				if(m_shouldReconnectService)
 				{
 					ResumeTangoServices();
+					m_wasConnectedOnPause = true;
+				}
+				else
+				{
+					m_wasConnectedOnPause = false;
 				}
 			}
 			else
 			{
-				if(m_isServiceConnected)
+				Debug.Log("OnPause");
+				if(m_isServiceConnected && m_wasConnectedOnPause)
 				{
 					m_shouldReconnectService = true;
+					m_wasConnectedOnPause = false;
 					SuspendTangoServices();
 				}
 			}
+		}
+		
+		/// <summary>
+		/// Raises the destroy event.
+		/// </summary>
+		void OnDestroy()
+		{
+			Debug.Log("On Destroy");
+			TangoConfig.Free();
+			_TangoDisconnect();
 		}
 
 		/// <summary>
@@ -187,7 +222,7 @@ namespace Tango
 			// verify
 			string syncFile = "data/data/" + AndroidHelper.GetCurrentPackageName() + "/files/activity_result";
 			string result = string.Empty;
-			File.Delete(syncFile);
+			_BlockingDelete(syncFile);
 
 			// request
 			AndroidHelper.StartTangoPermissionsActivity(permissionType);
@@ -214,6 +249,7 @@ namespace Tango
 			{
 				return (result == "RESULT_OK");
 			}
+			_BlockingDelete(syncFile);
 #endif
 
 			return false;
@@ -426,6 +462,20 @@ namespace Tango
 			}
 			
 			return m_isValidTangoAPIVersion;
+		}
+
+		/// <summary>
+		/// Delete that blocks code execution.
+		/// </summary>
+		/// <param name="path">Path to file to delete.</param>
+		private void _BlockingDelete(string path)
+		{
+			File.Delete(path);
+
+			while(File.Exists(path))
+			{
+				// let's block!
+			}
 		}
 
 		/// <summary>
