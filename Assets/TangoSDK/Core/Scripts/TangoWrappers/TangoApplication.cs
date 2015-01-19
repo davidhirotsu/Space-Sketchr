@@ -56,7 +56,6 @@ namespace Tango
 
 		private bool m_isServiceConnected = false;
 		private bool m_shouldReconnectService = false;
-		private bool m_wasConnectedOnPause = false;
 
 		/// <summary>
 		/// Gets the tango service version.
@@ -158,18 +157,25 @@ namespace Tango
 		/// </summary>
 		private void ResumeTangoServices()
 		{
+			StartCoroutine(DelayedConnect());
+		}
+		
+		IEnumerator DelayedConnect()
+		{
+			yield return new WaitForSeconds(2);
 			_TangoConnect();
 		}
-
+		
 		/// <summary>
 		/// Helper method that will suspend the tango services on App Suspend.
 		/// Unlocks the tango config and disconnects the service.
 		/// </summary>
 		private void SuspendTangoServices()
 		{
+			Debug.Log("Suspending Tango Service");
 			_TangoDisconnect();
 		}
-
+		
 		/// <summary>
 		/// Callback for when Unity app goes to background/foreground states.
 		/// </summary>
@@ -182,20 +188,14 @@ namespace Tango
 				if(m_shouldReconnectService)
 				{
 					ResumeTangoServices();
-					m_wasConnectedOnPause = true;
-				}
-				else
-				{
-					m_wasConnectedOnPause = false;
 				}
 			}
 			else
 			{
 				Debug.Log("OnPause");
-				if(m_isServiceConnected && m_wasConnectedOnPause)
+				if(m_isServiceConnected)
 				{
 					m_shouldReconnectService = true;
-					m_wasConnectedOnPause = false;
 					SuspendTangoServices();
 				}
 			}

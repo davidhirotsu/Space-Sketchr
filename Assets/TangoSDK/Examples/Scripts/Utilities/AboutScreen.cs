@@ -32,7 +32,7 @@ public class AboutScreen : MonoBehaviour
 	private const float BUTTON_WIDTH = 150.0f;
 	private const float BUTTON_HEIGHT = 75.0f;
 
-	private const float ABOUT_SCREEN_WIDTH = 600;
+	private const float ABOUT_SCREEN_WIDTH = 1350;
 	private const float ABOUT_SCREEN_HEIGHT = 100;
 
 	private Rect m_aboutScreenRect;
