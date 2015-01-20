@@ -46,7 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LFL\Doodle\LflTangoCtrl.cs" />
+     <Compile Include="Assets\LFL\Doodle\LFLTangoCameraCtrl.cs" />
      <Compile Include="Assets\LFL\Doodle\Sketchpad.cs" />
      <Compile Include="Assets\TangoSDK\Core\Scripts\Common\AndroidHelper.cs" />
      <Compile Include="Assets\TangoSDK\Core\Scripts\Common\Common.cs" />

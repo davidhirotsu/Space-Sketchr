@@ -32,8 +32,6 @@ namespace Tango
         private static readonly string CLASS_NAME = "PoseProvider";
         private const float MOUSE_LOOK_SENSITIVITY = 100.0f;
         private const float TRANSLATION_SPEED = 2.0f;
-
-
 		// Keeps track of all the ADFs on the device.
 		private static UUID_list m_adfList = new UUID_list();
 		/// <summary>
@@ -239,9 +237,6 @@ namespace Tango
 		/// <param name="adfID">The UUIDUnityHolder object that contains the desired UUID object.</param>
 		public static int SaveAreaDescription(UUIDUnityHolder adfID)
 		{
-			// is learning mode on
-			// are we localized?
-
 			if(adfID == null)
 			{
 				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR,

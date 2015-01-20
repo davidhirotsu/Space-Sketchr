@@ -217,16 +217,16 @@ public class PointcloudOrbitCamera : MonoBehaviour {
 		if (GUI.Button(new Rect(Screen.width - Common.UI_BUTTON_SIZE_X - Common.UI_BUTTON_GAP_X, 
 		                        Screen.height - ((Common.UI_BUTTON_SIZE_Y + Common.UI_LABEL_GAP_Y) * 3),
 		                        Common.UI_BUTTON_SIZE_X, 
-		                        Common.UI_BUTTON_SIZE_Y), "<size=20>First</size>"))
+		                        Common.UI_BUTTON_SIZE_Y), "<size=20>Third</size>"))
 		{
-			EnableCamera(CameraType.FIRST_PERSON);
+			EnableCamera(CameraType.THIRD_PERSON);
 		}
 		if (GUI.Button(new Rect(Screen.width - Common.UI_BUTTON_SIZE_X - Common.UI_BUTTON_GAP_X, 
 		                        Screen.height - ((Common.UI_BUTTON_SIZE_Y + Common.UI_LABEL_GAP_Y) * 2),
 		                        Common.UI_BUTTON_SIZE_X, 
-		                        Common.UI_BUTTON_SIZE_Y), "<size=20>Third</size>"))
+		                        Common.UI_BUTTON_SIZE_Y), "<size=20>First</size>"))
 		{
-			EnableCamera(CameraType.THIRD_PERSON);
+			EnableCamera(CameraType.FIRST_PERSON);
 		}
 		if (GUI.Button(new Rect(Screen.width - Common.UI_BUTTON_SIZE_X - Common.UI_BUTTON_GAP_X, 
 		                        Screen.height - (Common.UI_BUTTON_SIZE_Y + Common.UI_LABEL_GAP_Y),
