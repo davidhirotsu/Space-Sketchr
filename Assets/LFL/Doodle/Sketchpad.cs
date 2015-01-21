@@ -59,8 +59,11 @@ public class Sketchpad : MonoBehaviour {
 	void DrawPoint (Vector3 p) {
 		var particle = new ParticleSystem.Particle ();
 		particle.position = p;
-		particle.color = new Color (1f, 1f, 1f, 1f);
-		particle.size = 0.02f * Random.Range(0.8f, 1f);
+		particle.color = new Color (Random.Range(0.1f, 0.9f), Random.Range(0.1f, 0.9f), Random.Range(0.1f, 0.9f), Random.Range(0.8f, 1f));
+		particle.size = 0.02f * Random.Range(0.8f, 2f);
+		particle.rotation = Random.Range(0f, 360f);
+		//particle.angularVelocity = Random.Range(0f, 360f);
+		//particle.velocity = Vector3(0,10,0);
 		pointList.Add (particle);
 	}
 
