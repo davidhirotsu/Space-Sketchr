@@ -11,7 +11,7 @@ PlayerSettings:
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: Left Field Labs
-  productName: LFL Sketchpad
+  productName: SPACE SKETCHR
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   defaultScreenWidth: 1024
@@ -26,7 +26,7 @@ PlayerSettings:
   m_UseDX11: 1
   m_Stereoscopic3D: 0
   iosShowActivityIndicatorOnLoading: -1
-  androidShowActivityIndicatorOnLoading: -1
+  androidShowActivityIndicatorOnLoading: 0
   displayResolutionDialog: 1
   allowedAutorotateToPortrait: 1
   allowedAutorotateToPortraitUpsideDown: 1
@@ -56,6 +56,7 @@ PlayerSettings:
   visibleInBackground: 0
   macFullscreenMode: 2
   d3d9FullscreenMode: 1
+  d3d11ForceExclusiveMode: 0
   xboxSpeechDB: 0
   xboxEnableHeadOrientation: 0
   xboxEnableGuest: 0
@@ -93,6 +94,9 @@ PlayerSettings:
   iPhoneSplashScreen: {fileID: 0}
   iPhoneHighResSplashScreen: {fileID: 0}
   iPhoneTallHighResSplashScreen: {fileID: 0}
+  iPhone47inSplashScreen: {fileID: 0}
+  iPhone55inPortraitSplashScreen: {fileID: 0}
+  iPhone55inLandscapeSplashScreen: {fileID: 0}
   iPadPortraitSplashScreen: {fileID: 0}
   iPadHighResPortraitSplashScreen: {fileID: 0}
   iPadLandscapeSplashScreen: {fileID: 0}
@@ -105,20 +109,8 @@ PlayerSettings:
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
-    - m_Icon: {fileID: 0}
+    - m_Icon: {fileID: 2800000, guid: 7a331cc4e14ac408293f2b1c1f9ac49e, type: 3}
       m_Size: 128
-  - m_BuildTarget: Android
-    m_Icons:
-    - m_Icon: {fileID: 2800000, guid: f9a1d9ca2bde84b2d960a8edbe01e233, type: 3}
-      m_Size: 144
-    - m_Icon: {fileID: 0}
-      m_Size: 96
-    - m_Icon: {fileID: 0}
-      m_Size: 72
-    - m_Icon: {fileID: 0}
-      m_Size: 48
-    - m_Icon: {fileID: 0}
-      m_Size: 36
   m_BuildTargetBatching:
   - m_BuildTarget: Android
     m_StaticBatching: 1
