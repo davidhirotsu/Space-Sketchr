@@ -7,6 +7,15 @@ public class Sketchpad : MonoBehaviour
 
 	public Transform planeObject;
 
+	public Color primaryColor_01 = new Color( .5f, .5f, .5f, 1f );
+	public Color primaryColor_02 = new Color( .5f, .5f, .5f, 1f );
+	public Color primaryColor_03 = new Color( .5f, .5f, .5f, 1f );
+	public Color primaryColor_04 = new Color( .5f, .5f, .5f, 1f );
+	public Color primaryColor_05 = new Color( .5f, .5f, .5f, 1f );
+	public Color primaryColor_06 = new Color( .5f, .5f, .5f, 1f );
+	public Color primaryColor_07 = new Color( .5f, .5f, .5f, 1f );
+	public Color primaryColor_08 = new Color( .5f, .5f, .5f, 1f );
+
 	Vector3? lastPoint;
 	List<ParticleSystem.Particle> pointList = new List<ParticleSystem.Particle>();
 	bool particleSystemNeedsUpdate = false;
@@ -19,6 +28,14 @@ public class Sketchpad : MonoBehaviour
 			UpdateParticles ();
 			particleSystemNeedsUpdate = false;
 		}
+	}
+
+	public void PickRandomColor( Color baseColor )
+	{
+		// pull the RGB values from baseColor
+		float red = baseColor.r;
+		float red = baseColor.r;
+		float red = baseColor.r;
 	}
 
 	void CheckUserInput()
@@ -34,7 +51,7 @@ public class Sketchpad : MonoBehaviour
 	{
 		// Maps to CanvasPlane layer
 		var layerMask = 1 << 8;
-		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+		Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
 		RaycastHit hit;
 
 		if ( Physics.Raycast(ray, out hit, 20f, layerMask) ) {
