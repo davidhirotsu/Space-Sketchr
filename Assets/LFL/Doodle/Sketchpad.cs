@@ -7,14 +7,16 @@ public class Sketchpad : MonoBehaviour
 
 	public Transform planeObject;
 
-	public Color primaryColor_01 = new Color( .5f, .5f, .5f, 1f );
-	public Color primaryColor_02 = new Color( .5f, .5f, .5f, 1f );
-	public Color primaryColor_03 = new Color( .5f, .5f, .5f, 1f );
-	public Color primaryColor_04 = new Color( .5f, .5f, .5f, 1f );
-	public Color primaryColor_05 = new Color( .5f, .5f, .5f, 1f );
-	public Color primaryColor_06 = new Color( .5f, .5f, .5f, 1f );
-	public Color primaryColor_07 = new Color( .5f, .5f, .5f, 1f );
-	public Color primaryColor_08 = new Color( .5f, .5f, .5f, 1f );
+	public Color primaryColor_01 = new Color( 1f, 1f, 1f, 1f );
+	public Color primaryColor_02 = new Color( .749f, .749f, .749f, 1f );
+	public Color primaryColor_03 = new Color( .129f, .129f, .129f, 1f );
+	public Color primaryColor_04 = new Color( .129f, .588f, .953f, 1f );
+	public Color primaryColor_05 = new Color( .298f, .777f, .313f, 1f );
+	public Color primaryColor_06 = new Color( 1.0f, .921f, .231f, 1f );
+	public Color primaryColor_07 = new Color( 1.0f, .266f, .211f, 1f );
+	public Color primaryColor_08 = new Color( .925f, .160f, .482f, 1f );
+	public Color primaryColor_09 = new Color( 1.0f, .596f, 0.0f, 1f );
+	public Color primaryColor_10 = new Color( .925f, .160f, .482f, 1f );
 
 	Vector3? lastPoint;
 	List<ParticleSystem.Particle> pointList = new List<ParticleSystem.Particle>();
@@ -34,8 +36,11 @@ public class Sketchpad : MonoBehaviour
 	{
 		// pull the RGB values from baseColor
 		float red = baseColor.r;
-		float red = baseColor.r;
-		float red = baseColor.r;
+		float green = baseColor.g;
+		float blue = baseColor.b;
+
+		// randomize the colors based on color picker concept
+
 	}
 
 	void CheckUserInput()
