@@ -64,6 +64,8 @@ GameObject:
   - 92: {fileID: 9200000}
   - 124: {fileID: 12400000}
   - 81: {fileID: 8100000}
+  - 114: {fileID: 11418224}
+  - 114: {fileID: 11418226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -117,7 +119,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -.746999979}
+  m_LocalPosition: {x: 0, y: 0, z: -.147}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -131,14 +133,14 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: .000709957792, b: .102941155, a: .0196078438}
+  m_BackGroundColor: {r: 0, g: 0, b: .0352941193, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
-  near clip plane: .0199999996
+  near clip plane: .0299999993
   far clip plane: 20000
   field of view: 60
   orthographic: 0
@@ -146,7 +148,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967007
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -220,6 +222,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planeObject: {fileID: 400002}
+  primaryColor_01: {r: 1, g: 1, b: 1, a: 1}
+  primaryColor_02: {r: .749000013, g: .749000013, b: .749000013, a: 1}
+  primaryColor_03: {r: .128999993, g: .128999993, b: .128999993, a: 1}
+  primaryColor_04: {r: .128999993, g: .588, b: .953000009, a: 1}
+  primaryColor_05: {r: .298000008, g: .77700001, b: .312999994, a: 1}
+  primaryColor_06: {r: 1, g: .921000004, b: .231000006, a: 1}
+  primaryColor_07: {r: 1, g: .266000003, b: .210999995, a: 1}
+  primaryColor_08: {r: .925000012, g: .159999996, b: .481999993, a: 1}
+  primaryColor_09: {r: 1, g: .596000016, b: 0, a: 1}
+  primaryColor_10: {r: .925000012, g: .159999996, b: .481999993, a: 1}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,8 +243,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869d0314f3b5b45c4a5465e58c8eaf29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_movementScale: 3.5
+  m_movementScale: 1
   m_useADF: 1
+--- !u!114 &11418224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9aaa3f5f2d574f228e4a21aa38b61e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mode: 4
+  showGeneratedNormals: 0
+  offsetScale: .200000003
+  blurRadius: 10
+  edgeThresholdMin: .0500000007
+  edgeThreshold: .200000003
+  edgeSharpness: 4
+  dlaaSharp: 0
+  ssaaShader: {fileID: 4800000, guid: b3728d1488b02490cbd196c7941bf1f8, type: 3}
+  dlaaShader: {fileID: 4800000, guid: 017ca72b9e8a749058d13ebd527e98fa, type: 3}
+  nfaaShader: {fileID: 4800000, guid: ce0cb2621f6d84e21a87414e471a3cce, type: 3}
+  shaderFXAAPreset2: {fileID: 4800000, guid: 6f1418cffd12146f2a83be795f6fa5a7, type: 3}
+  shaderFXAAPreset3: {fileID: 4800000, guid: c182fa94a5a0a4c02870641efcd38cd5, type: 3}
+  shaderFXAAII: {fileID: 4800000, guid: cd5b323dcc592457790ff18b528f5e67, type: 3}
+  shaderFXAAIII: {fileID: 4800000, guid: c547503fff0e8482ea5793727057041c, type: 3}
+--- !u!114 &11418226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dad87ba4f1e04d6eb7f287e1f2e08fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolution: 1
+  screenBlendMode: 0
+  sunTransform: {fileID: 0}
+  radialBlurIterations: 1
+  sunColor: {r: 1, g: 1, b: 1, a: 1}
+  sunShaftBlurRadius: 1.97000003
+  sunShaftIntensity: 1.14999998
+  useSkyBoxAlpha: .564999998
+  maxRadius: .861000001
+  useDepthTexture: 1
+  sunShaftsShader: {fileID: 4800000, guid: d3b1c8c1036784176946f5cfbfb7fe4c, type: 3}
+  simpleClearShader: {fileID: 4800000, guid: f688f89ed5eb847c5b19c934a0f1e772, type: 3}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
