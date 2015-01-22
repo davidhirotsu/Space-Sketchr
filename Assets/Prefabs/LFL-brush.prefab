@@ -1,54 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &103850
+--- !u!1 &127818
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 403850}
-  - 114: {fileID: 11403854}
-  - 114: {fileID: 11403852}
-  - 65: {fileID: 6503850}
-  - 114: {fileID: 11403850}
+  - 4: {fileID: 427818}
+  - 114: {fileID: 11427822}
+  - 114: {fileID: 11427820}
+  - 65: {fileID: 6527818}
+  - 114: {fileID: 11427818}
   m_Layer: 5
-  m_Name: SplatterBrushButton
+  m_Name: LFL-brush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &403850
+--- !u!4 &427818
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103850}
+  m_GameObject: {fileID: 127818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -101, y: -158, z: 0}
+  m_LocalPosition: {x: -181.201111, y: -158, z: 0}
   m_LocalScale: {x: 1.00020003, y: 1.00020003, z: 1.00020003}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!65 &6503850
+--- !u!65 &6527818
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103850}
+  m_GameObject: {fileID: 127818}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 60, y: 60, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11403850
+--- !u!114 &11427818
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103850}
+  m_GameObject: {fileID: 127818}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d44bc69c2ca5f943b845318866dc1bd, type: 3}
@@ -58,18 +58,18 @@ MonoBehaviour:
   trigger: 0
   volume: 1
   pitch: 1
---- !u!114 &11403852
+--- !u!114 &11427820
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103850}
+  m_GameObject: {fileID: 127818}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 103850}
+  tweenTarget: {fileID: 127818}
   hover: {r: .78039217, g: .78039217, b: .78039217, a: 1}
   pressed: {r: .78039217, g: .78039217, b: .78039217, a: 1}
   disabledColor: {r: .78039217, g: .78039217, b: .78039217, a: .501960814}
@@ -83,12 +83,12 @@ MonoBehaviour:
   disabledSprite2D: {fileID: 0}
   pixelSnap: 1
   onClick: []
---- !u!114 &11403854
+--- !u!114 &11427822
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103850}
+  m_GameObject: {fileID: 127818}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b3dc54f924693f41b5cbecb267e647a, type: 3}
@@ -131,7 +131,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 50b387b7a8273488c8876e77196b078a, type: 2}
-  mSpriteName: black
+  mSpriteName: brush_normal
   mFillCenter: 1
 --- !u!1001 &100100000
 Prefab:
@@ -142,6 +142,6 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 103850}
+  m_RootGameObject: {fileID: 127818}
   m_IsPrefabParent: 1
   m_IsExploded: 1
