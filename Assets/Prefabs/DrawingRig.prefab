@@ -290,8 +290,8 @@ MonoBehaviour:
   screenBlendMode: 0
   sunTransform: {fileID: 0}
   radialBlurIterations: 1
-  sunColor: {r: 1, g: 1, b: 1, a: 1}
-  sunShaftBlurRadius: 1.97000003
+  sunColor: {r: .741379321, g: .741379321, b: .741379321, a: 1}
+  sunShaftBlurRadius: 3.5999999
   sunShaftIntensity: 1.14999998
   useSkyBoxAlpha: .564999998
   maxRadius: .861000001
