@@ -26,3 +26,7 @@ tango-doodle.userprefs
 =======
 Assets/.DS_Store
 >>>>>>> FETCH_HEAD
+
+*.csproj
+
+*.unityproj

@@ -49,6 +49,7 @@
      <Compile Include="Assets\AndroidImmersiveMode\Scripts\DemoScript.cs" />
      <Compile Include="Assets\AndroidImmersiveMode\Scripts\ImmersiveModeEnabler.cs" />
      <Compile Include="Assets\Code\LFLTangoCameraCtrl.cs" />
+     <Compile Include="Assets\Code\LoadNextScene.cs" />
      <Compile Include="Assets\Code\Sketchpad.cs" />
      <Compile Include="Assets\Code\UI_Brain.cs" />
      <Compile Include="Assets\NGUI\Examples\Scripts\InventorySystem\Game\EquipItems.cs" />

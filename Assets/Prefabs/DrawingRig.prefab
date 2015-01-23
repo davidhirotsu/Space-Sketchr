@@ -231,7 +231,11 @@ MonoBehaviour:
   primaryColor_07: {r: 1, g: .266000003, b: .210999995, a: 1}
   primaryColor_08: {r: .925000012, g: .159999996, b: .481999993, a: 1}
   primaryColor_09: {r: 1, g: .596000016, b: 0, a: 1}
-  primaryColor_10: {r: .925000012, g: .159999996, b: .481999993, a: 1}
+  primaryColor_10: {r: .192156866, g: .41568628, b: .772549033, a: 1}
+  basicBrushMaterial: {fileID: 2100000, guid: 8354c953e831948c48523535fe9a4f8c, type: 2}
+  lflBrushMaterial: {fileID: 2100000, guid: 67a6f3bb19e6e41558b8bf04665dab59, type: 2}
+  splatterBrushMaterial: {fileID: 2100000, guid: c8b98eb6e34d840a0b6fa8ed367390c1,
+    type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
