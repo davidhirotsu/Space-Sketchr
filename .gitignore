@@ -1,32 +1,7 @@
 Temp/*
 Library/*
 Build/*
-Assembly-CSharp-Editor-vs.csproj
-
-Assembly-CSharp-Editor-vs.csproj
-
-Assembly-CSharp-Editor.csproj
-
 *.csproj
-
-tango-doodle-csharp.sln
-
-tango-doodle.sln
-
-tango-doodle-csharp.sln
-
-tango-doodle.sln
-
-<<<<<<< HEAD
-Assets/LFL/Doodle/MainScene1.unity
-
-Assets/LFL/Doodle/MainScene1.unity.meta
-
-tango-doodle.userprefs
-=======
-Assets/.DS_Store
->>>>>>> FETCH_HEAD
-
-*.csproj
-
+*.sln
+*.DS_Store
 *.unityproj
