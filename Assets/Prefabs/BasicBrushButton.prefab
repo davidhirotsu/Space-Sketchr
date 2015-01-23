@@ -69,15 +69,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 174866}
-  hover: {r: .78039217, g: .78039217, b: .78039217, a: 1}
-  pressed: {r: .78039217, g: .78039217, b: .78039217, a: 1}
-  disabledColor: {r: .78039217, g: .78039217, b: .78039217, a: .501960814}
+  tweenTarget: {fileID: 0}
+  hover: {r: 1, g: 1, b: 1, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: 1}
+  disabledColor: {r: 1, g: 1, b: 1, a: .501960814}
   duration: .200000003
   dragHighlight: 0
-  hoverSprite: CircleButtonBG
-  pressedSprite: CircleButtonBG
-  disabledSprite: CircleButtonBG
+  hoverSprite: normal-brush-icon
+  pressedSprite: normal-brush-icon
+  disabledSprite: normal-brush-icon
   hoverSprite2D: {fileID: 0}
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: .78039217, g: .78039217, b: .78039217, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: .501960814}
   mPivot: 4
   mWidth: 60
   mHeight: 60
@@ -131,7 +131,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 50b387b7a8273488c8876e77196b078a, type: 2}
-  mSpriteName: CircleButtonBG
+  mSpriteName: normal-brush-icon
   mFillCenter: 1
 --- !u!1001 &100100000
 Prefab:

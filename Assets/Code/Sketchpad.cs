@@ -7,6 +7,8 @@ public class Sketchpad : MonoBehaviour
 
 	public Transform planeObject;
 
+	protected int selectedColor = 0;
+	protected Color[] allColors;
 	public Color primaryColor_01 = new Color( 1f, 1f, 1f, 1f );
 	public Color primaryColor_02 = new Color( .749f, .749f, .749f, 1f );
 	public Color primaryColor_03 = new Color( .129f, .129f, .129f, 1f );
@@ -18,10 +20,38 @@ public class Sketchpad : MonoBehaviour
 	public Color primaryColor_09 = new Color( 1.0f, .596f, 0.0f, 1f );
 	public Color primaryColor_10 = new Color( .925f, .160f, .482f, 1f );
 
+	protected int selectedMaterial;
+	protected Material[] allMaterials;
+	public Material basicBrushMaterial;
+	public Material lflBrushMaterial;
+	public Material splatterBrushMaterial;
+
 	Vector3? lastPoint;
 	List<ParticleSystem.Particle> pointList = new List<ParticleSystem.Particle>();
 	bool particleSystemNeedsUpdate = false;
-	
+
+	void Awake()
+	{
+		// place all of our colors in an array for convenience
+		allColors = new Color[10];
+		allColors[ 0 ] = primaryColor_01;
+		allColors[ 1 ] = primaryColor_02;
+		allColors[ 2 ] = primaryColor_03;
+		allColors[ 3 ] = primaryColor_04;
+		allColors[ 4 ] = primaryColor_05;
+		allColors[ 5 ] = primaryColor_06;
+		allColors[ 6 ] = primaryColor_07;
+		allColors[ 7 ] = primaryColor_08;
+		allColors[ 8 ] = primaryColor_09;
+		allColors[ 9 ] = primaryColor_10;
+
+		// place all of our textures in an array for convenience
+		allMaterials = new Material[3];
+		allMaterials[ 0 ] = basicBrushMaterial;
+		allMaterials[ 1 ] = lflBrushMaterial;
+		allMaterials[ 2 ] = splatterBrushMaterial;
+	}
+
 	void Update()
 	{
 		CheckUserInput();
@@ -31,6 +61,10 @@ public class Sketchpad : MonoBehaviour
 			particleSystemNeedsUpdate = false;
 		}
 	}
+
+	public void SetSelectedColor( int newSelectedColor ) { selectedColor = newSelectedColor; }
+
+	public void SetSelectedTexture( int newSelectedTexture ) { selectedMaterial = newSelectedTexture; }
 
 	public void PickRandomColor( Color baseColor )
 	{
@@ -92,7 +126,7 @@ public class Sketchpad : MonoBehaviour
 
 		particle.position = p;
 
-		particle.color = new Color (Random.Range(0.1f, 0.9f), Random.Range(0.1f, 0.9f), Random.Range(0.1f, 0.9f), Random.Range(0.8f, 1f));
+		particle.color = allColors[selectedColor];
 		particle.size = 0.02f * Random.Range(0.8f, 2f);
 		particle.rotation = Random.Range(0f, 360f);
 
@@ -107,6 +141,7 @@ public class Sketchpad : MonoBehaviour
 		// Note: this may not be the most efficient way to do this, if we hit performance issues start here
 		var asArray = pointList.ToArray();
 		particleSystem.SetParticles( asArray, asArray.Length );
+		particleSystem.renderer.material = allMaterials[ selectedMaterial ];
 	}
 
 	public void ClearPoints()

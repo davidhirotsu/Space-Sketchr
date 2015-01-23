@@ -3,6 +3,8 @@ using System.Collections;
 
 public class UI_Brain : MonoBehaviour
 {
+	public Sketchpad sketchpad;
+
 	// the UI_Brain object recieves events from various buttons within the UI and responds accordingly
 	// most of the UI must be manually linked to this object from within the Unity authoring environment
 
@@ -36,6 +38,8 @@ public class UI_Brain : MonoBehaviour
 		ResetTextureSwatches();
 		Color swatchColor = texturePaletteButtons[ 0 ].defaultColor;
 		texturePaletteButtons[ 0 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+
+		sketchpad.SetSelectedTexture( 0 );
 	}
 
 	public void Texture_02_Selected()
@@ -43,6 +47,8 @@ public class UI_Brain : MonoBehaviour
 		ResetTextureSwatches();
 		Color swatchColor = texturePaletteButtons[ 1 ].defaultColor;
 		texturePaletteButtons[ 1 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedTexture( 1 );
 	}
 
 	public void Texture_03_Selected()
@@ -50,6 +56,8 @@ public class UI_Brain : MonoBehaviour
 		ResetTextureSwatches();
 		Color swatchColor = texturePaletteButtons[ 2 ].defaultColor;
 		texturePaletteButtons[ 2 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedTexture( 2 );
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -59,60 +67,80 @@ public class UI_Brain : MonoBehaviour
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 0 ].defaultColor;
 		colorPaletteButtons[ 0 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+
+		sketchpad.SetSelectedColor( 0 );
 	}
 	public void Color_02_Selected()
 	{
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 1 ].defaultColor;
 		colorPaletteButtons[ 1 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedColor( 1 );
 	}
 	public void Color_03_Selected()
 	{
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 2 ].defaultColor;
 		colorPaletteButtons[ 2 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedColor( 2 );
 	}
 	public void Color_04_Selected()
 	{
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 3 ].defaultColor;
 		colorPaletteButtons[ 3 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedColor( 3 );
 	}
 	public void Color_05_Selected()
 	{
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 4 ].defaultColor;
 		colorPaletteButtons[ 4 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedColor( 4 );
 	}
 	public void Color_06_Selected()
 	{
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 5 ].defaultColor;
 		colorPaletteButtons[ 5 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedColor( 5 );
 	}
 	public void Color_07_Selected()
 	{
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 6 ].defaultColor;
 		colorPaletteButtons[ 6 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedColor( 6 );
 	}
 	public void Color_08_Selected()
 	{
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 7 ].defaultColor;
 		colorPaletteButtons[ 7 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedColor( 7 );
 	}
 	public void Color_09_Selected()
 	{
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 8 ].defaultColor;
 		colorPaletteButtons[ 8 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedColor( 8 );
 	}
 	public void Color_10_Selected()
 	{
 		ResetColorSwatches();
 		Color swatchColor = colorPaletteButtons[ 9 ].defaultColor;
 		colorPaletteButtons[ 9 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		
+		sketchpad.SetSelectedColor( 9 );
 	}
 
 	// ---------------------------------------------------------------------------------------------

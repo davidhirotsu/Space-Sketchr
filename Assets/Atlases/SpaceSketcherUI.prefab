@@ -42,32 +42,6 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: f15c1c03468724d8d99ee9665dfdb5c8, type: 2}
   mSprites:
   - name: black
-    x: 0
-    y: 1169
-    width: 241
-    height: 241
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 8
-    paddingRight: 7
-    paddingTop: 9
-    paddingBottom: 6
-  - name: brush
-    x: 515
-    y: 1428
-    width: 242
-    height: 241
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 7
-    paddingRight: 7
-    paddingTop: 8
-    paddingBottom: 7
-  - name: brush_normal
     x: 261
     y: 1674
     width: 256
@@ -80,61 +54,87 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: CircleButtonBG
-    x: 259
-    y: 1418
-    width: 251
-    height: 251
+  - name: brush
+    x: 522
+    y: 1674
+    width: 256
+    height: 256
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 3
-    paddingRight: 2
-    paddingTop: 2
-    paddingBottom: 3
-  - name: clear
-    x: 783
-    y: 1683
-    width: 224
-    height: 247
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 16
-    paddingRight: 16
-    paddingTop: 6
-    paddingBottom: 3
-  - name: folder
-    x: 738
-    y: 1184
-    width: 254
-    height: 226
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 1
-    paddingTop: 13
-    paddingBottom: 17
-  - name: info
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: brush_normal
     x: 0
-    y: 1415
-    width: 254
-    height: 254
+    y: 1413
+    width: 256
+    height: 256
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 1
-    paddingTop: 1
-    paddingBottom: 1
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: CircleButtonBG
+    x: 261
+    y: 1413
+    width: 256
+    height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: clear
+    x: 522
+    y: 1413
+    width: 256
+    height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: folder
+    x: 0
+    y: 1152
+    width: 256
+    height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: info
+    x: 261
+    y: 1152
+    width: 256
+    height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: lfl-brush
-    x: 246
-    y: 1169
+    x: 0
+    y: 384
     width: 241
     height: 241
     borderLeft: 0
@@ -159,31 +159,44 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: play
-    x: 762
-    y: 1428
-    width: 242
-    height: 241
+    x: 522
+    y: 1152
+    width: 256
+    height: 256
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 7
-    paddingRight: 7
-    paddingTop: 7
-    paddingBottom: 8
-  - name: save
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: rainbow-brush
     x: 0
-    y: 946
-    width: 254
-    height: 218
+    y: 891
+    width: 256
+    height: 256
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 1
-    paddingRight: 1
-    paddingTop: 20
-    paddingBottom: 18
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: save
+    x: 261
+    y: 891
+    width: 256
+    height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   - name: space_sketchr_app_logo
     x: 0
     y: 1935
@@ -199,7 +212,7 @@ MonoBehaviour:
     paddingBottom: 24
   - name: SquareButtonBG
     x: 522
-    y: 1674
+    y: 891
     width: 256
     height: 256
     borderLeft: 0
@@ -211,18 +224,18 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: whitebrush
-    x: 492
-    y: 1169
-    width: 241
-    height: 241
+    x: 0
+    y: 630
+    width: 256
+    height: 256
     borderLeft: 0
     borderRight: 0
     borderTop: 0
     borderBottom: 0
-    paddingLeft: 8
-    paddingRight: 7
-    paddingTop: 9
-    paddingBottom: 6
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
   mPixelSize: 1
   mReplacement: {fileID: 0}
   mCoordinates: 0
