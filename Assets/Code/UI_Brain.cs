@@ -12,14 +12,19 @@ public class UI_Brain : MonoBehaviour
 	public GameObject touchToDrawButton;
 	public GameObject touchToDrawLabel;
 	public GameObject colorToolPaletteButton;
+	public GameObject infoButton;
 
 	public GameObject invisibleButton;
 
 	public TweenTransform toolColorPaletteTween;
+	public TweenTransform infoPaletteTween;
+
 
 	// may want to switch this to an enum later
-	public bool toolPaletteIsOpen = true;
-	
+	public bool toolPaletteIsOpen = false;
+	public bool infoPaletteIsOpen = false;
+
+
 	public UIButton[] texturePaletteButtons;
 	public UIButton[] colorPaletteButtons;
 
@@ -267,6 +272,42 @@ public class UI_Brain : MonoBehaviour
 
 		toolPaletteIsOpen = false;
 	}
+
+
+	/*
+	public void OpenCloseInfoPaletteTouched() { 
+		if ( infoPaletteIsOpen ) 
+		{
+			CloseColorPalette(); 
+		} 
+		else { 
+			OpenColorPalette();
+		} 
+	}
+	*/	
+	
+	public void OpenInfoPalette()
+	{
+		// the color/tool palette is open, close it and unhide the button
+		colorToolPaletteButton.gameObject.SetActive( false );
+		invisibleButton.gameObject.SetActive( true );
+		
+		infoPaletteTween.PlayForward();
+		
+		infoPaletteIsOpen = true;
+	}
+	
+	public void CloseInfoPalette()
+	{
+		// the color/tool palette is closed, no need to re-close it
+		colorToolPaletteButton.gameObject.SetActive( true );
+		invisibleButton.gameObject.SetActive( false );
+		
+		infoPaletteTween.PlayReverse();
+		
+		infoPaletteIsOpen = false;
+	}
+
 
 	protected void SetGroupAsInactive()
 	{

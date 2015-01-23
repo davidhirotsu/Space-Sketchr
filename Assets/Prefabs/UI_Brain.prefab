@@ -39,12 +39,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82cecbc74e2a542eb964390471bd8948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sketchpad: {fileID: 0}
+  hasInitialized: 0
   touchToDrawButton: {fileID: 0}
   touchToDrawLabel: {fileID: 0}
   colorToolPaletteButton: {fileID: 0}
+  infoButton: {fileID: 0}
   invisibleButton: {fileID: 0}
   toolColorPaletteTween: {fileID: 0}
+  infoPaletteTween: {fileID: 0}
+  toolPaletteIsOpen: 1
+  infoPaletteIsOpen: 0
   texturePaletteButtons:
   - {fileID: 0}
   - {fileID: 0}
@@ -60,6 +64,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  brushSizeSlider: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
