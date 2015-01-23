@@ -42,8 +42,8 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: f15c1c03468724d8d99ee9665dfdb5c8, type: 2}
   mSprites:
   - name: black
-    x: 0
-    y: 1169
+    x: 247
+    y: 1167
     width: 241
     height: 241
     borderLeft: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 6
   - name: brush
-    x: 515
+    x: 776
     y: 1428
     width: 242
     height: 241
@@ -81,7 +81,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: CircleButtonBG
-    x: 259
+    x: 520
     y: 1418
     width: 251
     height: 251
@@ -107,8 +107,8 @@ MonoBehaviour:
     paddingTop: 6
     paddingBottom: 3
   - name: folder
-    x: 738
-    y: 1184
+    x: 0
+    y: 936
     width: 254
     height: 226
     borderLeft: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
     paddingTop: 13
     paddingBottom: 17
   - name: info
-    x: 0
+    x: 261
     y: 1415
     width: 254
     height: 254
@@ -133,8 +133,8 @@ MonoBehaviour:
     paddingTop: 1
     paddingBottom: 1
   - name: lfl-brush
-    x: 246
-    y: 1169
+    x: 493
+    y: 1167
     width: 241
     height: 241
     borderLeft: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
     paddingTop: 9
     paddingBottom: 6
   - name: normal-brush-icon
-    x: 0
+    x: 522
     y: 1674
     width: 256
     height: 256
@@ -159,8 +159,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: play
-    x: 762
-    y: 1428
+    x: 0
+    y: 1167
     width: 242
     height: 241
     borderLeft: 0
@@ -171,9 +171,22 @@ MonoBehaviour:
     paddingRight: 7
     paddingTop: 7
     paddingBottom: 8
-  - name: save
+  - name: rainbow-brush
     x: 0
-    y: 946
+    y: 1674
+    width: 256
+    height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: save
+    x: 259
+    y: 944
     width: 254
     height: 218
     borderLeft: 0
@@ -198,8 +211,8 @@ MonoBehaviour:
     paddingTop: 10
     paddingBottom: 24
   - name: SquareButtonBG
-    x: 522
-    y: 1674
+    x: 0
+    y: 1413
     width: 256
     height: 256
     borderLeft: 0
@@ -211,8 +224,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: whitebrush
-    x: 492
-    y: 1169
+    x: 739
+    y: 1167
     width: 241
     height: 241
     borderLeft: 0
