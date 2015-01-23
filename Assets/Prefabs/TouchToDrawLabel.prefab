@@ -56,19 +56,19 @@ MonoBehaviour:
     relative: 1
     absolute: -4
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 1, g: 1, b: 1, a: .243137255}
   mPivot: 4
-  mWidth: 440
+  mWidth: 330
   mHeight: 78
   mDepth: 5
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 5.64102554
+  aspectRatio: 4.23076916
   keepCrispWhenShrunk: 2
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: d0532d22c248e48a99ea783f86910d55, type: 2}
-  mText: touch to draw
+  mText: Touch to Draw
   mFontSize: 44
   mFontStyle: 0
   mAlignment: 0

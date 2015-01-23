@@ -3,7 +3,8 @@ using System.Collections;
 
 public class UI_Brain : MonoBehaviour
 {
-	public Sketchpad sketchpad;
+	public static UI_Brain _instance;
+	public bool hasInitialized = false;
 
 	// the UI_Brain object recieves events from various buttons within the UI and responds accordingly
 	// most of the UI must be manually linked to this object from within the Unity authoring environment
@@ -17,151 +18,211 @@ public class UI_Brain : MonoBehaviour
 	public TweenTransform toolColorPaletteTween;
 
 	// may want to switch this to an enum later
-	protected bool toolPaletteIsOpen = false;
+	public bool toolPaletteIsOpen = true;
 	
 	public UIButton[] texturePaletteButtons;
 	public UIButton[] colorPaletteButtons;
+
+	public UISlider brushSizeSlider;
 	
 	// ---------------------------------------------------------------------------------------------
 
+	void Awake()
+	{
+		_instance = this;
+	}
+	
 	void Start()
+	{
+		// doing nothing for now, wait until Sketchpad comes alive and initializes UI_Brain remotely
+	}
+
+	public void Initialize()
 	{
 		// set the initial texture to the basic brush and the initial color to white
 		Texture_01_Selected();
 		Color_01_Selected();
+
+		hasInitialized = true;
+		brushSizeSlider.value = Sketchpad._instance.brushSize;
 	}
 
+	// ---------------------------------------------------------------------------------------------
+	
+	public void OnBrushSizeSliderChange()
+	{
+		if ( hasInitialized ) Sketchpad._instance.brushSize = brushSizeSlider.value;
+	}
+
+	public void OnClearButtonPressed()
+	{
+		if ( hasInitialized ) Sketchpad._instance.ClearPoints();
+	}
+	
 	// ---------------------------------------------------------------------------------------------
 
 	public void Texture_01_Selected()
 	{
-		ResetTextureSwatches();
-		Color swatchColor = texturePaletteButtons[ 0 ].defaultColor;
-		texturePaletteButtons[ 0 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		if ( hasInitialized ) {
+			ResetTextureSwatches();
+			Color swatchColor = texturePaletteButtons[ 0 ].defaultColor;
+			texturePaletteButtons[ 0 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
 
-		sketchpad.SetSelectedTexture( 0 );
+			Sketchpad._instance.SetSelectedTexture( 0 );
+			Sketchpad._instance.UpdateParticles();
+		}
 	}
 
 	public void Texture_02_Selected()
 	{
-		ResetTextureSwatches();
-		Color swatchColor = texturePaletteButtons[ 1 ].defaultColor;
-		texturePaletteButtons[ 1 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedTexture( 1 );
+		if ( hasInitialized ) {
+			ResetTextureSwatches();
+			Color swatchColor = texturePaletteButtons[ 1 ].defaultColor;
+			texturePaletteButtons[ 1 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedTexture( 1 );
+			Sketchpad._instance.UpdateParticles();
+		}
 	}
 
 	public void Texture_03_Selected()
 	{
-		ResetTextureSwatches();
-		Color swatchColor = texturePaletteButtons[ 2 ].defaultColor;
-		texturePaletteButtons[ 2 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedTexture( 2 );
+		if ( hasInitialized ) {
+			ResetTextureSwatches();
+			Color swatchColor = texturePaletteButtons[ 2 ].defaultColor;
+			texturePaletteButtons[ 2 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedTexture( 2 );
+			Sketchpad._instance.UpdateParticles();
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	public void Color_01_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 0 ].defaultColor;
-		colorPaletteButtons[ 0 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 0 ].defaultColor;
+			colorPaletteButtons[ 0 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
 
-		sketchpad.SetSelectedColor( 0 );
+			Sketchpad._instance.SetSelectedColor( 0 );
+		}
 	}
 	public void Color_02_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 1 ].defaultColor;
-		colorPaletteButtons[ 1 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedColor( 1 );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 1 ].defaultColor;
+			colorPaletteButtons[ 1 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedColor( 1 );
+		}
 	}
 	public void Color_03_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 2 ].defaultColor;
-		colorPaletteButtons[ 2 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedColor( 2 );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 2 ].defaultColor;
+			colorPaletteButtons[ 2 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedColor( 2 );
+		}
 	}
 	public void Color_04_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 3 ].defaultColor;
-		colorPaletteButtons[ 3 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedColor( 3 );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 3 ].defaultColor;
+			colorPaletteButtons[ 3 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedColor( 3 );
+		}
 	}
 	public void Color_05_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 4 ].defaultColor;
-		colorPaletteButtons[ 4 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedColor( 4 );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 4 ].defaultColor;
+			colorPaletteButtons[ 4 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedColor( 4 );
+		}
 	}
 	public void Color_06_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 5 ].defaultColor;
-		colorPaletteButtons[ 5 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedColor( 5 );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 5 ].defaultColor;
+			colorPaletteButtons[ 5 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedColor( 5 );
+		}
 	}
 	public void Color_07_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 6 ].defaultColor;
-		colorPaletteButtons[ 6 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedColor( 6 );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 6 ].defaultColor;
+			colorPaletteButtons[ 6 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedColor( 6 );
+		}
 	}
 	public void Color_08_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 7 ].defaultColor;
-		colorPaletteButtons[ 7 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedColor( 7 );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 7 ].defaultColor;
+			colorPaletteButtons[ 7 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedColor( 7 );
+		}
 	}
 	public void Color_09_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 8 ].defaultColor;
-		colorPaletteButtons[ 8 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedColor( 8 );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 8 ].defaultColor;
+			colorPaletteButtons[ 8 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedColor( 8 );
+		}
 	}
 	public void Color_10_Selected()
 	{
-		ResetColorSwatches();
-		Color swatchColor = colorPaletteButtons[ 9 ].defaultColor;
-		colorPaletteButtons[ 9 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
-		
-		sketchpad.SetSelectedColor( 9 );
+		if ( hasInitialized ) {
+			ResetColorSwatches();
+			Color swatchColor = colorPaletteButtons[ 9 ].defaultColor;
+			colorPaletteButtons[ 9 ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 1f );
+			
+			Sketchpad._instance.SetSelectedColor( 9 );
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected void ResetTextureSwatches()
 	{
-		// go through the whole array of swatches and de-select them all
-		for ( int index = 0; index < texturePaletteButtons.Length; index++ ) {
-			// set this swatch back to deselected
-			Color swatchColor = texturePaletteButtons[ index ].defaultColor;
-			texturePaletteButtons[ index ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 0.5f );
+		if ( hasInitialized ) {
+			// go through the whole array of swatches and de-select them all
+			for ( int index = 0; index < texturePaletteButtons.Length; index++ ) {
+				// set this swatch back to deselected
+				Color swatchColor = texturePaletteButtons[ index ].defaultColor;
+				texturePaletteButtons[ index ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 0.5f );
+			}
 		}
 	}
 
 	protected void ResetColorSwatches()
 	{
-		// go through the whole array of swatches and de-select them all
-		for ( int index = 0; index < colorPaletteButtons.Length; index++ ) {
-			// set this swatch back to deselected
-			Color swatchColor = colorPaletteButtons[ index ].defaultColor;
-			colorPaletteButtons[ index ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 0.5f );
+		if ( hasInitialized ) {
+			// go through the whole array of swatches and de-select them all
+			for ( int index = 0; index < colorPaletteButtons.Length; index++ ) {
+				// set this swatch back to deselected
+				Color swatchColor = colorPaletteButtons[ index ].defaultColor;
+				colorPaletteButtons[ index ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 0.5f );
+			}
 		}
 	}
 
@@ -191,7 +252,7 @@ public class UI_Brain : MonoBehaviour
 		colorToolPaletteButton.gameObject.SetActive( false );
 		invisibleButton.gameObject.SetActive( true );
 
-		toolColorPaletteTween.PlayReverse();
+		toolColorPaletteTween.PlayForward();
 
 		toolPaletteIsOpen = true;
 	}
@@ -202,7 +263,7 @@ public class UI_Brain : MonoBehaviour
 		colorToolPaletteButton.gameObject.SetActive( true );
 		invisibleButton.gameObject.SetActive( false );
 
-		toolColorPaletteTween.PlayForward();
+		toolColorPaletteTween.PlayReverse();
 
 		toolPaletteIsOpen = false;
 	}

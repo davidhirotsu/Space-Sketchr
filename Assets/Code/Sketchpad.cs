@@ -4,34 +4,47 @@ using System.Collections.Generic;
 
 public class Sketchpad : MonoBehaviour
 {
-
+	public static Sketchpad _instance;
 	public Transform planeObject;
+
+	public float brushSize = 0.1f;
+	protected float brushMultiplier = 0.03f;
+	
+	protected int selectedTexture;
+	
+
+	public ParticleSystem basicBrushParticleSystem;
+	public ParticleSystem lflBrushParticleSystem;
+	public ParticleSystem splatterBrushParticleSystem;
+
+	Vector3? lastPoint;
+	List<ParticleSystem.Particle> pointList;
+	List<ParticleSystem.Particle> basicBrushPointList = new List<ParticleSystem.Particle>();
+	List<ParticleSystem.Particle> lflBrushPointList = new List<ParticleSystem.Particle>();
+	List<ParticleSystem.Particle> splatterBrushPointList = new List<ParticleSystem.Particle>();
+	bool particleSystemNeedsUpdate = false;
+
 
 	protected int selectedColor = 0;
 	protected Color[] allColors;
-	public Color primaryColor_01 = new Color( 1f, 1f, 1f, 1f );
-	public Color primaryColor_02 = new Color( .749f, .749f, .749f, 1f );
-	public Color primaryColor_03 = new Color( .129f, .129f, .129f, 1f );
-	public Color primaryColor_04 = new Color( .129f, .588f, .953f, 1f );
-	public Color primaryColor_05 = new Color( .298f, .777f, .313f, 1f );
-	public Color primaryColor_06 = new Color( 1.0f, .921f, .231f, 1f );
-	public Color primaryColor_07 = new Color( 1.0f, .266f, .211f, 1f );
-	public Color primaryColor_08 = new Color( .925f, .160f, .482f, 1f );
-	public Color primaryColor_09 = new Color( 1.0f, .596f, 0.0f, 1f );
-	public Color primaryColor_10 = new Color( .925f, .160f, .482f, 1f );
+	public Color primaryColor_01 = new Color( 1f, 1f, 1f, 0.1f );
+	public Color primaryColor_02 = new Color( .749f, .749f, .749f, 0.1f );
+	public Color primaryColor_03 = new Color( .129f, .129f, .129f, 0.1f );
+	public Color primaryColor_04 = new Color( .129f, .588f, .953f, 0.1f );
+	public Color primaryColor_05 = new Color( .298f, .777f, .313f, 0.1f );
+	public Color primaryColor_06 = new Color( 1.0f, .921f, .231f, 0.1f );
+	public Color primaryColor_07 = new Color( 1.0f, .266f, .211f, 0.1f );
+	public Color primaryColor_08 = new Color( .925f, .160f, .482f, 0.1f );
+	public Color primaryColor_09 = new Color( 1.0f, .596f, 0.0f, 0.1f );
+	public Color primaryColor_10 = new Color( .925f, .160f, .482f, 0.1f );
 
-	protected int selectedMaterial;
-	protected Material[] allMaterials;
-	public Material basicBrushMaterial;
-	public Material lflBrushMaterial;
-	public Material splatterBrushMaterial;
-
-	Vector3? lastPoint;
-	List<ParticleSystem.Particle> pointList = new List<ParticleSystem.Particle>();
-	bool particleSystemNeedsUpdate = false;
 
 	void Awake()
 	{
+		_instance = this;
+		
+		pointList = basicBrushPointList;
+
 		// place all of our colors in an array for convenience
 		allColors = new Color[10];
 		allColors[ 0 ] = primaryColor_01;
@@ -44,27 +57,41 @@ public class Sketchpad : MonoBehaviour
 		allColors[ 7 ] = primaryColor_08;
 		allColors[ 8 ] = primaryColor_09;
 		allColors[ 9 ] = primaryColor_10;
+	}
 
-		// place all of our textures in an array for convenience
-		allMaterials = new Material[3];
-		allMaterials[ 0 ] = basicBrushMaterial;
-		allMaterials[ 1 ] = lflBrushMaterial;
-		allMaterials[ 2 ] = splatterBrushMaterial;
+	void Start()
+	{
+		UI_Brain._instance.Initialize();
 	}
 
 	void Update()
 	{
-		CheckUserInput();
+		if ( UI_Brain._instance.hasInitialized ) {
+			CheckUserInput();
 
-		if ( particleSystemNeedsUpdate ) {
-			UpdateParticles ();
-			particleSystemNeedsUpdate = false;
+			if ( particleSystemNeedsUpdate ) {
+				UpdateParticles ();
+				particleSystemNeedsUpdate = false;
+			}
 		}
 	}
 
 	public void SetSelectedColor( int newSelectedColor ) { selectedColor = newSelectedColor; }
 
-	public void SetSelectedTexture( int newSelectedTexture ) { selectedMaterial = newSelectedTexture; }
+	public void SetSelectedTexture( int newSelectedTexture )
+	{
+		selectedTexture = newSelectedTexture;
+
+		if ( selectedTexture == 0 ) {
+			pointList = basicBrushPointList;
+		} else if ( selectedTexture == 1 ) {
+			pointList = lflBrushPointList;
+		} else if ( selectedTexture == 2 ) {
+			pointList = splatterBrushPointList;
+		} else {
+			Debug.Log ( "Something is wrong." );
+		}
+	}
 
 	public void PickRandomColor( Color baseColor )
 	{
@@ -80,7 +107,15 @@ public class Sketchpad : MonoBehaviour
 	void CheckUserInput()
 	{
 		if (Input.GetMouseButton( 0 )) {
-			ApplyUserInput();
+			if ( UI_Brain._instance.toolPaletteIsOpen ) {
+				// do nothing
+			} else {
+				if ( Input.mousePosition.y < 90 ) {
+					// do nothing
+				} else {
+					ApplyUserInput();
+				}
+			}
 		} else {
 			EndUserInput();
 		}
@@ -127,8 +162,8 @@ public class Sketchpad : MonoBehaviour
 		particle.position = p;
 
 		particle.color = allColors[selectedColor];
-		particle.size = 0.02f * Random.Range(0.8f, 2f);
-		particle.rotation = Random.Range(0f, 360f);
+		particle.size = brushMultiplier * brushSize;// * Random.Range( 0.5f, 1.5f );
+		particle.rotation = Random.Range( 0f, 359f );
 
 		//particle.angularVelocity = Random.Range(0f, 360f);
 		//particle.velocity = Vector3(0,10,0);
@@ -136,12 +171,20 @@ public class Sketchpad : MonoBehaviour
 		pointList.Add (particle);
 	}
 	
-	void UpdateParticles()
+	public void UpdateParticles()
 	{
 		// Note: this may not be the most efficient way to do this, if we hit performance issues start here
 		var asArray = pointList.ToArray();
-		particleSystem.SetParticles( asArray, asArray.Length );
-		particleSystem.renderer.material = allMaterials[ selectedMaterial ];
+
+		if ( selectedTexture == 0 ) {
+			basicBrushParticleSystem.SetParticles( asArray, asArray.Length );
+		} else if ( selectedTexture == 1 ) {
+			lflBrushParticleSystem.SetParticles( asArray, asArray.Length );
+		} else if ( selectedTexture == 2 ) {
+			splatterBrushParticleSystem.SetParticles( asArray, asArray.Length );
+		} else {
+			Debug.Log ( "Something is wrong." );
+		}
 	}
 
 	public void ClearPoints()
