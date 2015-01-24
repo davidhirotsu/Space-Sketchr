@@ -121,6 +121,7 @@ public class Sketchpad : MonoBehaviour
 		}
 	}
 
+	// make one 
 	void ApplyUserInput()
 	{
 		// Maps to CanvasPlane layer
@@ -130,17 +131,19 @@ public class Sketchpad : MonoBehaviour
 
 		if ( Physics.Raycast(ray, out hit, 20f, layerMask) ) {
 
-			if ( lastPoint.HasValue ) {
-				DrawLine( lastPoint.Value, hit.point );
-			} else {
+			//if ( lastPoint.HasValue ) {
+			//	DrawLine( lastPoint.Value, hit.point );
+			//} else {
 				DrawPoint( hit.point );
-			}
+			//}
 
 			lastPoint = hit.point;
 			particleSystemNeedsUpdate = true;
 
 		}
 	}
+	
+	// ---------------------------------------------------------------------------------------------
 
 	void EndUserInput() { lastPoint = null; }
 
@@ -155,6 +158,7 @@ public class Sketchpad : MonoBehaviour
 		}
 	}
 
+	// draw one mouse click, one brush to canvas
 	void DrawPoint( Vector3 p )
 	{
 		var particle = new ParticleSystem.Particle ();
@@ -170,7 +174,8 @@ public class Sketchpad : MonoBehaviour
 
 		pointList.Add (particle);
 	}
-	
+
+	// a complete array of particles is input into a particular particle system
 	public void UpdateParticles()
 	{
 		// Note: this may not be the most efficient way to do this, if we hit performance issues start here
@@ -187,6 +192,7 @@ public class Sketchpad : MonoBehaviour
 		}
 	}
 
+	// remove all of the points from one particular particle array
 	public void ClearPoints()
 	{
 		pointList.Clear();
