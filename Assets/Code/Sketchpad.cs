@@ -166,7 +166,9 @@ public class Sketchpad : MonoBehaviour
 		particle.position = p;
 
 		particle.color = allColors[selectedColor];
-		particle.size = brushMultiplier * brushSize;// * Random.Range( 0.5f, 1.5f );
+		// a little organic swelling
+		particle.size = brushMultiplier * brushSize*Random.Range( 0.75f, 1.33f );// * Random.Range( 0.5f, 1.5f );
+
 		particle.rotation = Random.Range( 0f, 359f );
 
 		//particle.angularVelocity = Random.Range(0f, 360f);
