@@ -135,9 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tweenTarget: {fileID: 100000}
   hover: {r: .890196085, g: .890196085, b: .890196085, a: 1}
-  pressed: {r: .890196085, g: .890196085, b: .890196085, a: 1}
+  pressed: {r: 1, g: 1, b: 1, a: .784313738}
   disabledColor: {r: .5, g: .5, b: .5, a: .501960814}
-  duration: .200000003
+  duration: .300000012
   dragHighlight: 0
   hoverSprite: clear
   pressedSprite: clear
@@ -148,7 +148,7 @@ MonoBehaviour:
   pixelSnap: 1
   onClick:
   - mTarget: {fileID: 0}
-    mMethodName: ClearPoints
+    mMethodName: OnClearButtonPressed
     mParameters: []
     oneShot: 0
 --- !u!114 &11400004
@@ -165,7 +165,7 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
   trigger: 0
   volume: 1
-  pitch: 1
+  pitch: .5
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1

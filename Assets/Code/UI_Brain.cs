@@ -12,9 +12,12 @@ public class UI_Brain : MonoBehaviour
 	public GameObject touchToDrawButton;
 	public GameObject touchToDrawLabel;
 	public GameObject colorToolPaletteButton;
+	public GameObject infoPaletteButton;
+
 	public GameObject infoButton;
 
-	public GameObject invisibleButton;
+	public GameObject info_invisibleButton;
+	public GameObject color_invisibleButton;
 
 	public TweenTransform toolColorPaletteTween;
 	public TweenTransform infoPaletteTween;
@@ -239,12 +242,28 @@ public class UI_Brain : MonoBehaviour
 		SetGroupAsInactive();
 	}
 
-	public void InvisibleButtonTouched()
+	public void ColorPalette_InvisibleButtonTouched()
 	{
 		// button disappears on touch
 		SetGroupAsInactive();
+		
+		if ( toolPaletteIsOpen ) { 
+			CloseColorPalette(); 
+			
+		}
+		
+	}
 
-		if ( toolPaletteIsOpen ) { CloseColorPalette(); }
+	public void InfoPalette_InvisibleButtonTouched()
+	{
+		// button disappears on touch
+		SetGroupAsInactive();
+		
+		if ( infoPaletteIsOpen ) { 
+			CloseInfoPalette(); 
+			
+		}
+		
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -255,7 +274,7 @@ public class UI_Brain : MonoBehaviour
 	{
 		// the color/tool palette is open, close it and unhide the button
 		colorToolPaletteButton.gameObject.SetActive( false );
-		invisibleButton.gameObject.SetActive( true );
+		color_invisibleButton.gameObject.SetActive( true );
 
 		toolColorPaletteTween.PlayForward();
 
@@ -266,7 +285,7 @@ public class UI_Brain : MonoBehaviour
 	{
 		// the color/tool palette is closed, no need to re-close it
 		colorToolPaletteButton.gameObject.SetActive( true );
-		invisibleButton.gameObject.SetActive( false );
+		color_invisibleButton.gameObject.SetActive( false );
 
 		toolColorPaletteTween.PlayReverse();
 
@@ -285,25 +304,28 @@ public class UI_Brain : MonoBehaviour
 		} 
 	}
 	*/	
-	
+	public void OpenCloseInfoPaletteTouched() { if ( infoPaletteIsOpen ) { CloseInfoPalette(); } else { OpenInfoPalette(); } }
+
 	public void OpenInfoPalette()
 	{
+		Debug.Log ("OpenInfoPalette");
 		// the color/tool palette is open, close it and unhide the button
-		colorToolPaletteButton.gameObject.SetActive( false );
-		invisibleButton.gameObject.SetActive( true );
+		infoPaletteButton.gameObject.SetActive( false );
+		info_invisibleButton.gameObject.SetActive( true );
 		
-		infoPaletteTween.PlayForward();
+		infoPaletteTween.PlayReverse();
 		
 		infoPaletteIsOpen = true;
 	}
 	
 	public void CloseInfoPalette()
 	{
+		Debug.Log ("CloseInfoPalette");
 		// the color/tool palette is closed, no need to re-close it
-		colorToolPaletteButton.gameObject.SetActive( true );
-		invisibleButton.gameObject.SetActive( false );
+		infoPaletteButton.gameObject.SetActive( true );
+		info_invisibleButton.gameObject.SetActive( false );
 		
-		infoPaletteTween.PlayReverse();
+		infoPaletteTween.PlayForward();
 		
 		infoPaletteIsOpen = false;
 	}
@@ -314,7 +336,9 @@ public class UI_Brain : MonoBehaviour
 		// there are a few functions that turn off these items, so it's been consolidated to avoid duplication
 		touchToDrawButton.gameObject.SetActive( false );
 		touchToDrawLabel.gameObject.SetActive( false );
-		invisibleButton.gameObject.SetActive( false );
+		color_invisibleButton.gameObject.SetActive( false );
+		info_invisibleButton.gameObject.SetActive( false );
+
 	}
 
 	// ---------------------------------------------------------------------------------------------

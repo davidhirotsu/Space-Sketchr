@@ -43,12 +43,14 @@ MonoBehaviour:
   touchToDrawButton: {fileID: 0}
   touchToDrawLabel: {fileID: 0}
   colorToolPaletteButton: {fileID: 0}
+  infoPaletteButton: {fileID: 0}
   infoButton: {fileID: 0}
-  invisibleButton: {fileID: 0}
+  info_invisibleButton: {fileID: 0}
+  color_invisibleButton: {fileID: 0}
   toolColorPaletteTween: {fileID: 0}
   infoPaletteTween: {fileID: 0}
   toolPaletteIsOpen: 1
-  infoPaletteIsOpen: 0
+  infoPaletteIsOpen: 1
   texturePaletteButtons:
   - {fileID: 0}
   - {fileID: 0}

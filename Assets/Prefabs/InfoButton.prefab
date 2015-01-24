@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -884, y: 532, z: 0}
+  m_LocalPosition: {x: -874, y: 70, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -84,9 +84,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: b5083cfe83bb875479bd797c61594131, type: 3}
-  trigger: 0
+  trigger: 3
   volume: 1
-  pitch: 1
+  pitch: .5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,7 +111,11 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 1
-  onClick: []
+  onClick:
+  - mTarget: {fileID: 0}
+    mMethodName: 
+    mParameters: []
+    oneShot: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
