@@ -32,39 +32,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &116278
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 416278}
-  - 114: {fileID: 11416314}
-  m_Layer: 5
-  m_Name: Label
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!1 &116284
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 416284}
-  - 65: {fileID: 6516252}
-  - 114: {fileID: 11416318}
-  m_Layer: 5
-  m_Name: InvisibleButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &116304
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +45,7 @@ GameObject:
   - 65: {fileID: 6516262}
   - 114: {fileID: 11416356}
   m_Layer: 5
-  m_Name: InfoButton
+  m_Name: OpenCloseInfoPalette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,11 +59,10 @@ Transform:
   m_GameObject: {fileID: 116234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -319.999817, z: 0}
-  m_LocalScale: {x: 1.00020003, y: 1.00020003, z: 1.00020003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 416256}
   - {fileID: 416304}
-  - {fileID: 416284}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &416256
@@ -106,35 +72,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 116256}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -163, z: 0}
+  m_LocalPosition: {x: 0, y: -932, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 416234}
   m_RootOrder: 0
---- !u!4 &416278
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116278}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 416304}
-  m_RootOrder: 0
---- !u!4 &416284
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116284}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 579, z: 0}
-  m_LocalScale: {x: 1.00020003, y: 1.00020003, z: 1.00020003}
-  m_Children: []
-  m_Father: {fileID: 416234}
-  m_RootOrder: 2
 --- !u!4 &416304
 Transform:
   m_ObjectHideFlags: 1
@@ -144,22 +86,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -874, y: 70, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 416278}
+  m_Children: []
   m_Father: {fileID: 416234}
   m_RootOrder: 1
---- !u!65 &6516252
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116284}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1920, y: 1200, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6516262
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -241,13 +170,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: .141176477}
   mPivot: 4
-  mWidth: 1957
-  mHeight: 284
-  mDepth: -99
+  mWidth: 1956
+  mHeight: 1822
+  mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.8908453
+  aspectRatio: 1.07354558
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -261,100 +190,6 @@ MonoBehaviour:
   mAtlas: {fileID: 11400000, guid: 50b387b7a8273488c8876e77196b078a, type: 2}
   mSpriteName: SquareButtonBG
   mFillCenter: 1
---- !u!114 &11416314
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116278}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 416304}
-    relative: 0
-    absolute: 4
-  rightAnchor:
-    target: {fileID: 416304}
-    relative: 1
-    absolute: -4
-  bottomAnchor:
-    target: {fileID: 416304}
-    relative: 0
-    absolute: 4
-  topAnchor:
-    target: {fileID: 416304}
-    relative: 1
-    absolute: -4
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 84
-  mHeight: 78
-  mDepth: 2
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 5.64102554
-  keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 0}
-  mFont: {fileID: 11400000, guid: d0532d22c248e48a99ea783f86910d55, type: 2}
-  mText: i
-  mFontSize: 44
-  mFontStyle: 0
-  mAlignment: 0
-  mEncoding: 1
-  mMaxLineCount: 0
-  mEffectStyle: 0
-  mEffectColor: {r: .805970132, g: .714862168, b: .553352594, a: 1}
-  mSymbols: 1
-  mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
-  mMaterial: {fileID: 0}
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: .699999988, g: .699999988, b: .699999988, a: 1}
-  mSpacingX: 0
-  mSpacingY: 0
-  mUseFloatSpacing: 0
-  mFloatSpacingX: 0
-  mFloatSpacingY: 0
-  mShrinkToFit: 0
-  mMaxLineWidth: 0
-  mMaxLineHeight: 0
-  mLineWidth: 0
-  mMultiline: 1
---- !u!114 &11416318
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 0}
-  hover: {r: .882352948, g: .784313738, b: .588235319, a: 1}
-  pressed: {r: .717647076, g: .639215708, b: .482352942, a: 1}
-  disabledColor: {r: .5, g: .5, b: .5, a: 1}
-  duration: .200000003
-  dragHighlight: 0
-  hoverSprite: 
-  pressedSprite: 
-  disabledSprite: 
-  hoverSprite2D: {fileID: 0}
-  pressedSprite2D: {fileID: 0}
-  disabledSprite2D: {fileID: 0}
-  pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 0}
-    mMethodName: InvisibleButtonTouched
-    mParameters: []
-    oneShot: 0
 --- !u!114 &11416352
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -387,7 +222,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 94
   mHeight: 94
-  mDepth: 0
+  mDepth: 1
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
@@ -431,7 +266,7 @@ MonoBehaviour:
   pixelSnap: 1
   onClick:
   - mTarget: {fileID: 0}
-    mMethodName: 
+    mMethodName: OpenInfoPalette
     mParameters: []
     oneShot: 0
 --- !u!114 &11416356

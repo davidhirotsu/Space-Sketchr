@@ -254,15 +254,15 @@ Prefab:
   m_RootGameObject: {fileID: 18049946}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &310338036
+--- !u!1 &546040117
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 310338038}
-  - 114: {fileID: 310338037}
+  - 4: {fileID: 546040119}
+  - 114: {fileID: 546040118}
   m_Layer: 0
   m_Name: DebugLogger
   m_TagString: Untagged
@@ -270,23 +270,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &310338037
+--- !u!114 &546040118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 310338036}
+  m_GameObject: {fileID: 546040117}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6420e70a4bb2c01499d2eab76cff88fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &310338038
+--- !u!4 &546040119
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 310338036}
+  m_GameObject: {fileID: 546040117}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1885,7 +1885,7 @@ Transform:
   m_GameObject: {fileID: 1866144393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1000, y: 1000, z: 0}
-  m_LocalScale: {x: .00243309001, y: .00243309001, z: .00243309001}
+  m_LocalScale: {x: .00236127502, y: .00236127502, z: .00236127502}
   m_Children:
   - {fileID: 1385651384}
   - {fileID: 1655796753}

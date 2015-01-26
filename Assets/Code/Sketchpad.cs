@@ -7,9 +7,9 @@ public class Sketchpad : MonoBehaviour
 	public static Sketchpad _instance;
 	public Transform planeObject;
 
-	public float brushSize = 0.1f;
-	protected float brushMultiplier = 0.03f;
-	
+	public float brushSize = 0.2f;
+	protected float brushMultiplier = 0.025f;
+	protected float brushBase = 0.005f;
 	protected int selectedTexture;
 	
 
@@ -27,16 +27,16 @@ public class Sketchpad : MonoBehaviour
 
 	protected int selectedColor = 0;
 	protected Color[] allColors;
-	public Color primaryColor_01 = new Color( 1f, 1f, 1f, 0.1f );
-	public Color primaryColor_02 = new Color( .749f, .749f, .749f, 0.1f );
-	public Color primaryColor_03 = new Color( .129f, .129f, .129f, 0.1f );
-	public Color primaryColor_04 = new Color( .129f, .588f, .953f, 0.1f );
-	public Color primaryColor_05 = new Color( .298f, .777f, .313f, 0.1f );
-	public Color primaryColor_06 = new Color( 1.0f, .921f, .231f, 0.1f );
-	public Color primaryColor_07 = new Color( 1.0f, .266f, .211f, 0.1f );
-	public Color primaryColor_08 = new Color( .925f, .160f, .482f, 0.1f );
-	public Color primaryColor_09 = new Color( 1.0f, .596f, 0.0f, 0.1f );
-	public Color primaryColor_10 = new Color( .925f, .160f, .482f, 0.1f );
+	protected Color primaryColor_01 = new Color( 1f, 1f, 1f, 0.5f );
+	protected Color primaryColor_02 = new Color( .749f, .749f, .749f, 0.5f );
+	protected Color primaryColor_03 = new Color( .129f, .129f, .129f, 0.5f );
+	protected Color primaryColor_04 = new Color( .129f, .588f, .953f, 0.5f );
+	protected Color primaryColor_05 = new Color( .298f, .777f, .313f, 0.5f );
+	protected Color primaryColor_06 = new Color( 1.0f, .921f, .231f, 0.5f );
+	protected Color primaryColor_07 = new Color( 1.0f, .266f, .211f, 0.5f );
+	protected Color primaryColor_08 = new Color( .925f, .160f, .482f, 0.5f );
+	protected Color primaryColor_09 = new Color( 1.0f, .596f, 0.0f, 0.5f );
+	protected Color primaryColor_10 = new Color( .925f, .160f, .482f, 0.5f );
 
 
 	void Awake()
@@ -76,6 +76,8 @@ public class Sketchpad : MonoBehaviour
 		}
 	}
 
+	// ---------------------------------------------------------------------------------------------
+
 	public void SetSelectedColor( int newSelectedColor ) { selectedColor = newSelectedColor; }
 
 	public void SetSelectedTexture( int newSelectedTexture )
@@ -93,35 +95,50 @@ public class Sketchpad : MonoBehaviour
 		}
 	}
 
-	public void PickRandomColor( Color baseColor )
+	public Color PickRandomColor()
 	{
-		// pull the RGB values from baseColor
-		float red = baseColor.r;
-		float green = baseColor.g;
-		float blue = baseColor.b;
-
-		// randomize the colors based on color picker concept
-
+		Color newColor = new Color( Random.Range( 0.1f, 0.9f ), Random.Range( 0.1f, 0.9f ), Random.Range( 0.1f, 0.9f ), 0.5f );
+		return newColor;
 	}
+
+	// ---------------------------------------------------------------------------------------------
 
 	void CheckUserInput()
 	{
 		if (Input.GetMouseButton( 0 )) {
-			if ( UI_Brain._instance.toolPaletteIsOpen ) {
-				// do nothing
+
+			if ( UI_Brain._instance.uiState != UIState.AllClosed ) {
+				Debug.Log ( Input.mousePosition.y );
+				if ( Input.mousePosition.y < 180 ) {
+					// do nothing
+				} else {
+
+					// close both palettes
+					UI_Brain._instance.CloseInfoPalette();
+					UI_Brain._instance.CloseColorPalette();
+
+					// start drawing
+					ApplyUserInput();
+				}
+
 			} else {
+
 				if ( Input.mousePosition.y < 90 ) {
 					// do nothing
 				} else {
+					// start drawing
 					ApplyUserInput();
 				}
+
 			}
+
 		} else {
+
 			EndUserInput();
+
 		}
 	}
 
-	// make one 
 	void ApplyUserInput()
 	{
 		// Maps to CanvasPlane layer
@@ -131,11 +148,7 @@ public class Sketchpad : MonoBehaviour
 
 		if ( Physics.Raycast(ray, out hit, 20f, layerMask) ) {
 
-			//if ( lastPoint.HasValue ) {
-			//	DrawLine( lastPoint.Value, hit.point );
-			//} else {
-				DrawPoint( hit.point );
-			//}
+			DrawPoint( hit.point );
 
 			lastPoint = hit.point;
 			particleSystemNeedsUpdate = true;
@@ -153,8 +166,8 @@ public class Sketchpad : MonoBehaviour
 		var num = dotsPerWorldSpace * (p1 - p2).magnitude;
 
 		for (var i = 0; i < num; i++) {
-			var p = Vector3.Lerp (p1, p2, i / num);
-			DrawPoint (p);
+			var p = Vector3.Lerp( p1, p2, i / num );
+			DrawPoint( p );
 		}
 	}
 
@@ -165,14 +178,13 @@ public class Sketchpad : MonoBehaviour
 
 		particle.position = p;
 
-		particle.color = allColors[selectedColor];
+		if ( selectedColor < 10 ) { particle.color = allColors[ selectedColor ]; }
+		else { particle.color = PickRandomColor(); }
+
 		// a little organic swelling
-		particle.size = brushMultiplier * brushSize*Random.Range( 0.75f, 1.33f );// * Random.Range( 0.5f, 1.5f );
+		particle.size = brushBase + brushMultiplier * brushSize;//*Random.Range( brushBase, (brushBase * 100) );// * Random.Range( 0.5f, 1.5f );
 
 		particle.rotation = Random.Range( 0f, 359f );
-
-		//particle.angularVelocity = Random.Range(0f, 360f);
-		//particle.velocity = Vector3(0,10,0);
 
 		pointList.Add (particle);
 	}
@@ -198,6 +210,13 @@ public class Sketchpad : MonoBehaviour
 	public void ClearPoints()
 	{
 		pointList.Clear();
+
+		basicBrushParticleSystem.Clear();
+		lflBrushParticleSystem.Clear();
+		splatterBrushParticleSystem.Clear();
+
 		particleSystemNeedsUpdate = true;
 	}
+
+	// ---------------------------------------------------------------------------------------------
 }
