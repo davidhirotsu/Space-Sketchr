@@ -54,6 +54,8 @@ public class UI_Brain : MonoBehaviour
 
 	public void Initialize()
 	{
+		CloseColorPalette();
+		CloseInfoPalette();
 		hasInitialized = true;
 		brushSizeSlider.value = Sketchpad._instance.brushSize;
 
@@ -61,8 +63,7 @@ public class UI_Brain : MonoBehaviour
 		Color_Selected( Random.Range( 3, 10 ) );
 		Texture_Selected( Random.Range( 1, 2 ) );
 		
-		CloseColorPalette();
-		CloseInfoPalette();
+	
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -142,7 +143,7 @@ public class UI_Brain : MonoBehaviour
 			for ( int index = 0; index < colorPaletteButtons.Length; index++ ) {
 				// set this swatch back to deselected
 				Color swatchColor = colorPaletteButtons[ index ].defaultColor;
-				colorPaletteButtons[ index ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 0.05f );
+				colorPaletteButtons[ index ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, .10f );
 			}
 		}
 	}

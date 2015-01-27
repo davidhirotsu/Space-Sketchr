@@ -197,9 +197,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: Rainbow_Ring
-    x: 1262
-    y: 138
+  - name: rainbow-brush
+    x: 660
+    y: 616
     width: 256
     height: 256
     borderLeft: 0
@@ -210,9 +210,9 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: rainbow-brush
-    x: 660
-    y: 616
+  - name: rainbow-ring
+    x: 1262
+    y: 138
     width: 256
     height: 256
     borderLeft: 0

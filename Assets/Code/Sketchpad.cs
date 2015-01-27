@@ -28,15 +28,14 @@ public class Sketchpad : MonoBehaviour
 	protected int selectedColor = 0;
 	protected Color[] allColors;
 	protected Color primaryColor_01 = new Color( 1f, 1f, 1f, 0.5f ); // white
-	protected Color primaryColor_02 = new Color( .749f, .1f, .1f, 0.5f ); //grey - > red
-	protected Color primaryColor_03 = new Color(.425f, .160f, .882f, 0.5f ); //purple
-	protected Color primaryColor_04 = new Color( .129f, .588f, .953f, 0.5f ); //blue
-	protected Color primaryColor_05 = new Color( .298f, .777f, .313f, 0.5f ); //green
-	protected Color primaryColor_06 = new Color( 1.0f, .921f, .231f, 0.5f ); //yellow
-	protected Color primaryColor_07 = new Color( 1.0f, .266f, .211f, 0.5f ); //orange
-	protected Color primaryColor_08 = new Color( .925f, .160f, .482f, 0.5f ); // pink
-	protected Color primaryColor_09 = new Color( 1.0f, .596f, 0.0f, 0.5f ); //yellow
-	protected Color primaryColor_10 = new Color( .225f, .260f, .882f, 0.5f ); //blue
+	protected Color primaryColor_02 = new Color( .996f, .737f, .157f, 0.5f ); //yellow
+	protected Color primaryColor_03 = new Color( .262f, .521f, .953f, 0.5f ); //blue
+	protected Color primaryColor_04 = new Color( .121f, .592f, .341f, 0.5f ); //green
+	protected Color primaryColor_05 = new Color( .733f, .263f, .992f, 0.5f ); //purple
+	protected Color primaryColor_06 = new Color( 1f, .565f, .212f, 0.5f ); //orange
+	protected Color primaryColor_07 = new Color( .910f, .090f, .549f, 0.5f ); //magenta
+	protected Color primaryColor_08 = new Color( .263f, .878f, 1f, 0.5f ); // teal
+	protected Color primaryColor_09 = new Color( .933f, .11f, .153f, 0.5f ); //red
 
 
 	void Awake()
@@ -46,7 +45,7 @@ public class Sketchpad : MonoBehaviour
 		pointList = basicBrushPointList;
 
 		// place all of our colors in an array for convenience
-		allColors = new Color[10];
+		allColors = new Color[9];
 		allColors[ 0 ] = primaryColor_01;
 		allColors[ 1 ] = primaryColor_02;
 		allColors[ 2 ] = primaryColor_03;
@@ -56,7 +55,6 @@ public class Sketchpad : MonoBehaviour
 		allColors[ 6 ] = primaryColor_07;
 		allColors[ 7 ] = primaryColor_08;
 		allColors[ 8 ] = primaryColor_09;
-		allColors[ 9 ] = primaryColor_10;
 	}
 
 	void Start()
