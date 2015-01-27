@@ -142,7 +142,7 @@ public class UI_Brain : MonoBehaviour
 			for ( int index = 0; index < colorPaletteButtons.Length; index++ ) {
 				// set this swatch back to deselected
 				Color swatchColor = colorPaletteButtons[ index ].defaultColor;
-				colorPaletteButtons[ index ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 0.5f );
+				colorPaletteButtons[ index ].defaultColor = new Color( swatchColor.r, swatchColor.g, swatchColor.b, 0.05f );
 			}
 		}
 	}
