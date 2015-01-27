@@ -22,8 +22,17 @@ public class UI_Brain : MonoBehaviour
 
 
 
-	public TweenTransform toolColorPaletteTween;
-	public TweenTransform infoPaletteTween;
+	public TweenTransform allMotionTween;
+	//public TweenTransform infoPaletteTween;
+
+	//public TweenTransform infoMotionTween;
+	//public TweenTransform colorMotionTween;
+	//public TweenTransform clearMotionTween;
+
+	public TweenColor infoFadeTween;
+	public TweenColor colorFadeTween;
+	public TweenColor clearFadeTween;
+
 
 	public UIButton[] texturePaletteButtons;
 	public UIButton[] colorPaletteButtons;
@@ -55,8 +64,8 @@ public class UI_Brain : MonoBehaviour
 		Color_Selected( Random.Range( 3, 10 ) );
 		Texture_Selected( Random.Range( 1, 2 ) );
 		
-		CloseColorPalette();
-		CloseInfoPalette();
+		//CloseColorPalette();
+		//CloseInfoPalette();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -157,12 +166,15 @@ public class UI_Brain : MonoBehaviour
 	{
 		Debug.Log ("OpenColorPalette");
 		// the color/tool palette is open, close it and unhide the button
-		infoPaletteButton.gameObject.SetActive( false );
-		colorToolPaletteButton.SetActive( false );
-		clearAllButton.SetActive( false );
+
+		//infoPaletteButton.gameObject.SetActive( false );
+		//colorToolPaletteButton.SetActive( false );
+		//clearAllButton.SetActive( false );
 		ShowTouchToDrawInfo();
 
-		toolColorPaletteTween.PlayReverse();
+		//allFadeTween.PlayForward();
+		allMotionTween.PlayForward ();
+		AllColorTweenOff ();
 
 		uiState = UIState.ToolPaletteOpen;
 	}
@@ -170,13 +182,16 @@ public class UI_Brain : MonoBehaviour
 	public void CloseColorPalette()
 	{
 		Debug.Log ("CloseColorPalette");
-		// the color/tool palette is closed, no need to re-close it
-		infoPaletteButton.gameObject.SetActive( true );
-		colorToolPaletteButton.SetActive( true );
-		clearAllButton.SetActive( true );
-		HideTouchToDrawInfo();
 
-		toolColorPaletteTween.PlayForward();
+		// the color/tool palette is closed, no need to re-close it
+		//infoPaletteButton.gameObject.SetActive( true );
+		//colorToolPaletteButton.SetActive( true );
+		//clearAllButton.SetActive( true );
+		HideTouchToDrawInfo();
+		
+
+		allMotionTween.PlayReverse();
+		AllColorTweenOn ();
 
 		uiState = UIState.AllClosed;
 	}
@@ -189,25 +204,30 @@ public class UI_Brain : MonoBehaviour
 	{
 		Debug.Log ("OpenInfoPalette");
 		// the color/tool palette is open, close it and unhide the button
-		infoPaletteButton.gameObject.SetActive( false );
-		colorToolPaletteButton.SetActive( false );
-		clearAllButton.SetActive( false );
+		allMotionTween.PlayForward ();
+		AllColorTweenOff ();
+		//infoPaletteButton.gameObject.SetActive( false );
+		//colorToolPaletteButton.SetActive( false );
+		//clearAllButton.SetActive( false );
 		//spaceSketcherLogo.SetActive (false);
-		infoPaletteTween.PlayReverse();
-		
+		//allFadeTween.PlayForward();
+
 		uiState = UIState.InfoPaletteOpen;
 	}
 	
 	public void CloseInfoPalette()
 	{
+		allMotionTween.PlayReverse();
+		AllColorTweenOn ();
 		Debug.Log ("CloseInfoPalette");
 		// the color/tool palette is closed, no need to re-close it
-		infoPaletteButton.gameObject.SetActive( true );
-		colorToolPaletteButton.SetActive( true );
-		clearAllButton.SetActive( true );
+	//	infoPaletteButton.gameObject.SetActive( true );
+		//colorToolPaletteButton.SetActive( true );
+		//clearAllButton.SetActive( true );
 		//spaceSketcherLogo.SetActive (true);
+		//allFadeTween.PlayReverse();
 
-		infoPaletteTween.PlayForward();
+		//allMotionTween.PlayForward();
 		
 		uiState = UIState.AllClosed;
 	}
@@ -231,4 +251,37 @@ public class UI_Brain : MonoBehaviour
 	}
 	
 	// ---------------------------------------------------------------------------------------------
+
+
+
+	/*
+	protected void AllMotionTweenUp(){
+		infoMotionTween.PlayReverse();
+		colorMotionTween.PlayReverse();
+		clearMotionTween.PlayReverse();
+
+
+	}
+	protected void AllMotionTweenDown(){
+
+		infoMotionTween.PlayForward();
+		colorMotionTween.PlayForward();
+		clearMotionTween.PlayForward();
+
+	}
+	*/
+
+	public void AllColorTweenOn(){
+		infoFadeTween.PlayReverse();
+		colorFadeTween.PlayReverse();
+		clearFadeTween.PlayReverse();
+
+	}
+
+	public void AllColorTweenOff(){
+
+		infoFadeTween.PlayForward();
+		colorFadeTween.PlayForward();
+		clearFadeTween.PlayForward();
+	}
 }
