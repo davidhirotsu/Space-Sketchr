@@ -5,3 +5,7 @@ Build/*
 *.sln
 *.DS_Store
 *.unityproj
+
+*.csproj
+
+*.unityproj
