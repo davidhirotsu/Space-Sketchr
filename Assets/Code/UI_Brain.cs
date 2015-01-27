@@ -257,11 +257,12 @@ public class UI_Brain : MonoBehaviour
 	public void AllColorTweenOn(){
 //		touchToDrawLabel.gameObject.GetComponent<UILabel>().text = "Touch to Draw";
 
-		TweenColor.Begin (GameObject go, 1f, new Color );
+//		TweenColor.Begin (GameObject go, 1f, new Color );
 
 		infoFadeTween.PlayReverse();
 		colorFadeTween.PlayReverse();
 		clearFadeTween.PlayReverse();
+
 
 	}
 
@@ -270,5 +271,6 @@ public class UI_Brain : MonoBehaviour
 		infoFadeTween.PlayForward();
 		colorFadeTween.PlayForward();
 		clearFadeTween.PlayForward();
+
 	}
 }
