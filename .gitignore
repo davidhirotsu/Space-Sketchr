@@ -9,3 +9,5 @@ Build/*
 *.csproj
 
 *.unityproj
+
+Assets/Scenes/MainScene.unity
