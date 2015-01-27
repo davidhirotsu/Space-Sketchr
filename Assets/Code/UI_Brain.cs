@@ -18,6 +18,9 @@ public class UI_Brain : MonoBehaviour
 	public GameObject colorToolPaletteButton;
 	public GameObject infoPaletteButton;
 	public GameObject clearAllButton;
+	public GameObject spaceSketcherLogo;
+
+
 
 	public TweenTransform toolColorPaletteTween;
 	public TweenTransform infoPaletteTween;
@@ -189,7 +192,7 @@ public class UI_Brain : MonoBehaviour
 		infoPaletteButton.gameObject.SetActive( false );
 		colorToolPaletteButton.SetActive( false );
 		clearAllButton.SetActive( false );
-		
+		//spaceSketcherLogo.SetActive (false);
 		infoPaletteTween.PlayReverse();
 		
 		uiState = UIState.InfoPaletteOpen;
@@ -202,7 +205,8 @@ public class UI_Brain : MonoBehaviour
 		infoPaletteButton.gameObject.SetActive( true );
 		colorToolPaletteButton.SetActive( true );
 		clearAllButton.SetActive( true );
-		
+		//spaceSketcherLogo.SetActive (true);
+
 		infoPaletteTween.PlayForward();
 		
 		uiState = UIState.AllClosed;

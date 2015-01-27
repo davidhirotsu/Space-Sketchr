@@ -27,16 +27,16 @@ public class Sketchpad : MonoBehaviour
 
 	protected int selectedColor = 0;
 	protected Color[] allColors;
-	protected Color primaryColor_01 = new Color( 1f, 1f, 1f, 0.5f );
-	protected Color primaryColor_02 = new Color( .749f, .749f, .749f, 0.5f );
-	protected Color primaryColor_03 = new Color( .129f, .129f, .129f, 0.5f );
-	protected Color primaryColor_04 = new Color( .129f, .588f, .953f, 0.5f );
-	protected Color primaryColor_05 = new Color( .298f, .777f, .313f, 0.5f );
-	protected Color primaryColor_06 = new Color( 1.0f, .921f, .231f, 0.5f );
-	protected Color primaryColor_07 = new Color( 1.0f, .266f, .211f, 0.5f );
-	protected Color primaryColor_08 = new Color( .925f, .160f, .482f, 0.5f );
-	protected Color primaryColor_09 = new Color( 1.0f, .596f, 0.0f, 0.5f );
-	protected Color primaryColor_10 = new Color( .925f, .160f, .482f, 0.5f );
+	protected Color primaryColor_01 = new Color( 1f, 1f, 1f, 0.5f ); // white
+	protected Color primaryColor_02 = new Color( .749f, .1f, .1f, 0.5f ); //grey - > red
+	protected Color primaryColor_03 = new Color(.425f, .160f, .882f, 0.5f ); //purple
+	protected Color primaryColor_04 = new Color( .129f, .588f, .953f, 0.5f ); //blue
+	protected Color primaryColor_05 = new Color( .298f, .777f, .313f, 0.5f ); //green
+	protected Color primaryColor_06 = new Color( 1.0f, .921f, .231f, 0.5f ); //yellow
+	protected Color primaryColor_07 = new Color( 1.0f, .266f, .211f, 0.5f ); //orange
+	protected Color primaryColor_08 = new Color( .925f, .160f, .482f, 0.5f ); // pink
+	protected Color primaryColor_09 = new Color( 1.0f, .596f, 0.0f, 0.5f ); //yellow
+	protected Color primaryColor_10 = new Color( .225f, .260f, .882f, 0.5f ); //blue
 
 
 	void Awake()
