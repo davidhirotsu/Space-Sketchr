@@ -290,22 +290,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c7da18b2fc54b4ba95b349aa783ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiBrain: {fileID: 0}
   planeObject: {fileID: 400002}
   brushSize: .100000001
   basicBrushParticleSystem: {fileID: 19800004}
   lflBrushParticleSystem: {fileID: 19800002}
   splatterBrushParticleSystem: {fileID: 19800000}
-  primaryColor_01: {r: 1, g: 1, b: 1, a: 1}
-  primaryColor_02: {r: .749000013, g: .749000013, b: .749000013, a: 1}
-  primaryColor_03: {r: .128999993, g: .128999993, b: .128999993, a: 1}
-  primaryColor_04: {r: .128999993, g: .588, b: .953000009, a: 1}
-  primaryColor_05: {r: .298000008, g: .77700001, b: .312999994, a: 1}
-  primaryColor_06: {r: 1, g: .921000004, b: .231000006, a: 1}
-  primaryColor_07: {r: 1, g: .266000003, b: .210999995, a: 1}
-  primaryColor_08: {r: .925000012, g: .159999996, b: .481999993, a: 1}
-  primaryColor_09: {r: 1, g: .596000016, b: 0, a: 1}
-  primaryColor_10: {r: .192156866, g: .41568628, b: .772549033, a: 1}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
