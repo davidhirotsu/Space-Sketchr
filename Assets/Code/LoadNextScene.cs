@@ -5,10 +5,11 @@ public class LoadNextScene : MonoBehaviour
 {
 	public string sceneToLoad = "MainScene";
 	public GameObject destroyOnLoad;
+	public float notificationLength = 0.01f;
 
 	// Use this for initialization
 	void Start () {
-		Invoke ( "GoToNextScene", 1.0f );
+		Invoke ( "GoToNextScene", notificationLength );
 	}
 	
 	// Update is called once per frame

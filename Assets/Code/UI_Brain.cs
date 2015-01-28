@@ -38,6 +38,9 @@ public class UI_Brain : MonoBehaviour
 
 	protected Color selectedSwatchColor;
 	protected int selectedSwatchTexture;
+
+	public GameObject infoPalette;
+	public GameObject colorPalette;
 	
 	// ---------------------------------------------------------------------------------------------
 
@@ -56,6 +59,7 @@ public class UI_Brain : MonoBehaviour
 	{
 		CloseColorPalette();
 		CloseInfoPalette();
+
 		hasInitialized = true;
 		brushSizeSlider.value = Sketchpad._instance.brushSize;
 
@@ -63,7 +67,8 @@ public class UI_Brain : MonoBehaviour
 		Color_Selected( Random.Range( 3, 10 ) );
 		Texture_Selected( Random.Range( 1, 2 ) );
 		
-	
+		//infoPalette.transform.localPosition = new Vector3( 0f, -320f, 0f );
+		//colorPalette.transform.localPosition = new Vector3( 0f, -500f, 0f );
 	}
 
 	// ---------------------------------------------------------------------------------------------
