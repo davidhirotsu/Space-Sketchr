@@ -2224,7 +2224,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 42, y: 44, z: 0}
+  m_Size: {x: 60, y: 60, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6528864
 BoxCollider:
@@ -2649,7 +2649,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 50b387b7a8273488c8876e77196b078a, type: 2}
-  mSpriteName: normal-brush-icon
+  mSpriteName: BasicBrushIcon
   mFillCenter: 1
 --- !u!114 &11428694
 MonoBehaviour:
@@ -3813,7 +3813,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 50b387b7a8273488c8876e77196b078a, type: 2}
-  mSpriteName: brush_normal
+  mSpriteName: LFLBrushIcon
   mFillCenter: 1
 --- !u!114 &11428758
 MonoBehaviour:
@@ -3896,7 +3896,7 @@ MonoBehaviour:
   hideIfOffScreen: 0
   keepAspectRatio: 0
   aspectRatio: 21.5
-  mType: 1
+  mType: 0
   mFillDirection: 4
   mFillAmount: 1
   mInvert: 0
@@ -3906,8 +3906,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 62adb30369acbf943a67cee0f69267a3, type: 2}
-  mSpriteName: Highlight - Shadowed
+  mAtlas: {fileID: 11400000, guid: 50b387b7a8273488c8876e77196b078a, type: 2}
+  mSpriteName: BrushSizeSlider
   mFillCenter: 1
 --- !u!114 &11428766
 MonoBehaviour:
@@ -4539,21 +4539,21 @@ MonoBehaviour:
   bottomAnchor:
     target: {fileID: 428792}
     relative: 0
-    absolute: -12
+    absolute: -20
   topAnchor:
     target: {fileID: 428792}
     relative: 1
-    absolute: 12
+    absolute: 20
   updateAnchors: 1
   mColor: {r: .317636222, g: .520895541, b: .91911763, a: 1}
   mPivot: 4
-  mWidth: 42
-  mHeight: 44
+  mWidth: 60
+  mHeight: 60
   mDepth: 2
   autoResizeBoxCollider: 1
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: .954545438
+  aspectRatio: 1
   mType: 1
   mFillDirection: 4
   mFillAmount: 1
@@ -4564,8 +4564,8 @@ MonoBehaviour:
   rightType: 1
   bottomType: 1
   topType: 1
-  mAtlas: {fileID: 11400000, guid: 62adb30369acbf943a67cee0f69267a3, type: 2}
-  mSpriteName: Button
+  mAtlas: {fileID: 11400000, guid: 50b387b7a8273488c8876e77196b078a, type: 2}
+  mSpriteName: CircleButtonBG
   mFillCenter: 1
 --- !u!114 &11428800
 MonoBehaviour:
@@ -6060,7 +6060,7 @@ MonoBehaviour:
   bottomType: 1
   topType: 1
   mAtlas: {fileID: 11400000, guid: 50b387b7a8273488c8876e77196b078a, type: 2}
-  mSpriteName: black
+  mSpriteName: SplatterBrushIcon
   mFillCenter: 1
 --- !u!114 &11428874
 MonoBehaviour:
