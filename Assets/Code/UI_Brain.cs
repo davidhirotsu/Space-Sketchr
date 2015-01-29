@@ -6,6 +6,7 @@ public enum UIState{ AllClosed, InfoPaletteOpen, ToolPaletteOpen };
 public class UI_Brain : MonoBehaviour
 {
 	public static UI_Brain _instance;
+
 	public bool hasInitialized = false;
 
 	public UIState uiState;
@@ -32,6 +33,7 @@ public class UI_Brain : MonoBehaviour
 
 
 	public UIButton[] texturePaletteButtons;
+	public UISprite[] texturePaletteRings;
 	public UIButton[] colorPaletteButtons;
 
 	public UISlider brushSizeSlider;
@@ -61,14 +63,12 @@ public class UI_Brain : MonoBehaviour
 		CloseInfoPalette();
 
 		hasInitialized = true;
-		brushSizeSlider.value = Sketchpad._instance.brushSize;
 
 		// set the initial texture to the basic brush and the initial color to white
-		Color_Selected( Random.Range( 3, 10 ) );
+		Color_Selected( Random.Range( 1, 8 ) );
 		Texture_Selected( Random.Range( 1, 2 ) );
 		
-		//infoPalette.transform.localPosition = new Vector3( 0f, -320f, 0f );
-		//colorPalette.transform.localPosition = new Vector3( 0f, -500f, 0f );
+		brushSizeSlider.value = 0.5f;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -95,7 +95,9 @@ public class UI_Brain : MonoBehaviour
 			selectedSwatchTexture = selectedTexture;
 
 			ResetTextureSwatches();
+
 			texturePaletteButtons[ selectedSwatchTexture ].defaultColor = new Color( selectedSwatchColor.r, selectedSwatchColor.g, selectedSwatchColor.b, 1f );
+			texturePaletteRings[ selectedSwatchTexture ].color = new Color( selectedSwatchColor.r, selectedSwatchColor.g, selectedSwatchColor.b, 1f );
 			
 			Sketchpad._instance.SetSelectedTexture( selectedSwatchTexture );
 			Sketchpad._instance.UpdateParticles();
@@ -113,8 +115,6 @@ public class UI_Brain : MonoBehaviour
 	public void Color_07_Selected() { Color_Selected( 6 ); }
 	public void Color_08_Selected() { Color_Selected( 7 ); }
 	public void Color_09_Selected() { Color_Selected( 8 ); }
-	public void Color_10_Selected() { Color_Selected( 9 ); }
-	public void Color_11_Selected() { Color_Selected( 10 ); }
 
 	public void Color_Selected( int selectedColor )
 	{
@@ -124,7 +124,8 @@ public class UI_Brain : MonoBehaviour
 			colorPaletteButtons[ selectedColor ].defaultColor = new Color( selectedSwatchColor.r, selectedSwatchColor.g, selectedSwatchColor.b, 1f );
 			
 			Sketchpad._instance.SetSelectedColor( selectedColor );
-			texturePaletteButtons[ selectedSwatchTexture ].defaultColor = new Color( selectedSwatchColor.r, selectedSwatchColor.g, selectedSwatchColor.b, 1f );
+
+			Texture_Selected( selectedSwatchTexture );
 		}
 	}
 
@@ -137,6 +138,7 @@ public class UI_Brain : MonoBehaviour
 			for ( int index = 0; index < texturePaletteButtons.Length; index++ ) {
 				// set this swatch back to deselected, and make them white
 				texturePaletteButtons[ index ].defaultColor = new Color( 1f, 1f, 1f, 0.5f );
+				texturePaletteRings[ index ].color = new Color( 1f, 1f, 1f, 0.5f );
 			}
 		}
 	}
@@ -167,15 +169,8 @@ public class UI_Brain : MonoBehaviour
 
 	public void OpenColorPalette()
 	{
-		Debug.Log ("OpenColorPalette");
-		// the color/tool palette is open, close it and unhide the button
-
-		//infoPaletteButton.gameObject.SetActive( false );
-		//colorToolPaletteButton.SetActive( false );
-		//clearAllButton.SetActive( false );
 		ShowTouchToDrawInfo();
 
-		//allFadeTween.PlayForward();
 		iconPaletteTweenOpen.PlayForward();
 		colorPaletteTweenOpen.PlayForward();
 		AllColorTweenOff ();
@@ -185,12 +180,6 @@ public class UI_Brain : MonoBehaviour
 
 	public void CloseColorPalette()
 	{
-		Debug.Log ("CloseColorPalette");
-
-		// the color/tool palette is closed, no need to re-close it
-		//infoPaletteButton.gameObject.SetActive( true );
-		//colorToolPaletteButton.SetActive( true );
-		//clearAllButton.SetActive( true );
 		HideTouchToDrawInfo();
 		
 		iconPaletteTweenOpen.PlayReverse();
@@ -206,16 +195,10 @@ public class UI_Brain : MonoBehaviour
 
 	public void OpenInfoPalette()
 	{
-		Debug.Log ("OpenInfoPalette");
-		// the color/tool palette is open, close it and unhide the button
 		iconPaletteTweenOpen.PlayForward ();
 		infoPaletteTweenOpen.PlayForward ();
+
 		AllColorTweenOff ();
-
-
-	// infoPaletteButton.gameObject.SetActive( false );
-	//	colorToolPaletteButton.SetActive( false );
-	//	clearAllButton.SetActive( false );
 
 		uiState = UIState.InfoPaletteOpen;
 	}
@@ -225,16 +208,7 @@ public class UI_Brain : MonoBehaviour
 		iconPaletteTweenOpen.PlayReverse();
 		infoPaletteTweenOpen.PlayReverse ();
 
-		AllColorTweenOn ();
-		Debug.Log ("CloseInfoPalette");
-		// the color/tool palette is closed, no need to re-close it
-		//infoPaletteButton.gameObject.SetActive( true );
-		//colorToolPaletteButton.SetActive( true );
-		//clearAllButton.SetActive( true );
-		//spaceSketcherLogo.SetActive (true);
-		//allFadeTween.PlayReverse();
-
-		//allMotionTween.PlayForward();
+		AllColorTweenOn();
 		
 		uiState = UIState.AllClosed;
 	}
@@ -260,23 +234,17 @@ public class UI_Brain : MonoBehaviour
 	// ---------------------------------------------------------------------------------------------
 
 
-	public void AllColorTweenOn(){
-//		touchToDrawLabel.gameObject.GetComponent<UILabel>().text = "Touch to Draw";
-
-//		TweenColor.Begin (GameObject go, 1f, new Color );
-
+	public void AllColorTweenOn()
+	{
 		infoFadeTween.PlayReverse();
 		colorFadeTween.PlayReverse();
 		clearFadeTween.PlayReverse();
-
-
 	}
 
-	public void AllColorTweenOff(){
-
+	public void AllColorTweenOff()
+	{
 		infoFadeTween.PlayForward();
 		colorFadeTween.PlayForward();
 		clearFadeTween.PlayForward();
-
 	}
 }

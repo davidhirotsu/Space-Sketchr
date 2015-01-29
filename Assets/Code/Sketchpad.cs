@@ -7,7 +7,7 @@ public class Sketchpad : MonoBehaviour
 	public static Sketchpad _instance;
 	public Transform planeObject;
 
-	public float brushSize = 0.2f;
+	public float brushSize = 0.45f;
 	protected float brushMultiplier = 0.025f;
 	protected float brushBase = 0.005f;
 	protected int selectedTexture;
@@ -18,10 +18,12 @@ public class Sketchpad : MonoBehaviour
 	public ParticleSystem splatterBrushParticleSystem;
 
 	Vector3? lastPoint;
+
 	List<ParticleSystem.Particle> pointList;
 	List<ParticleSystem.Particle> basicBrushPointList = new List<ParticleSystem.Particle>();
 	List<ParticleSystem.Particle> lflBrushPointList = new List<ParticleSystem.Particle>();
 	List<ParticleSystem.Particle> splatterBrushPointList = new List<ParticleSystem.Particle>();
+
 	bool particleSystemNeedsUpdate = false;
 
 
@@ -208,6 +210,10 @@ public class Sketchpad : MonoBehaviour
 	public void ClearPoints()
 	{
 		pointList.Clear();
+
+		basicBrushPointList.Clear();
+		lflBrushPointList.Clear();
+		splatterBrushPointList.Clear();
 
 		basicBrushParticleSystem.Clear();
 		lflBrushParticleSystem.Clear();

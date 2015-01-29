@@ -43,7 +43,7 @@ MonoBehaviour:
   mSprites:
   - name: BasicBrushIcon
     x: 261
-    y: 420
+    y: 492
     width: 67
     height: 67
     borderLeft: 0
@@ -303,7 +303,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: SplatterBrushIcon
     x: 261
-    y: 492
+    y: 420
     width: 67
     height: 67
     borderLeft: 0

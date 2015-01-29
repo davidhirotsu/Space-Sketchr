@@ -1696,19 +1696,19 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: .466666669}
+  mColor: {r: .691176474, g: .691176474, b: .691176474, a: .466666669}
   mPivot: 4
-  mWidth: 432
+  mWidth: 478
   mHeight: 44
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 9.81818199
+  aspectRatio: 10.863636
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: d0532d22c248e48a99ea783f86910d55, type: 2}
-  mText: Tango is Calibrating...
+  mText: '...Tango is Calibrating ...'
   mFontSize: 44
   mFontStyle: 0
   mAlignment: 0
@@ -1816,7 +1816,7 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: .466666669}
+  mColor: {r: .691176474, g: .691176474, b: .691176474, a: .466666669}
   mPivot: 4
   mWidth: 730
   mHeight: 44
@@ -1957,8 +1957,8 @@ MonoBehaviour:
   scalingStyle: 0
   manualWidth: 1280
   manualHeight: 720
-  minimumHeight: 320
-  maximumHeight: 1536
+  minimumHeight: 1200
+  maximumHeight: 1200
   fitWidth: 0
   fitHeight: 1
   adjustByDPI: 0
@@ -1971,7 +1971,7 @@ Transform:
   m_GameObject: {fileID: 1866144393}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1000, y: 1000, z: 0}
-  m_LocalScale: {x: .00238379021, y: .00238379021, z: .00238379021}
+  m_LocalScale: {x: .00166666671, y: .00166666671, z: .00166666671}
   m_Children:
   - {fileID: 1385651384}
   - {fileID: 1655796753}
