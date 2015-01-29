@@ -23,7 +23,6 @@ using Tango;
 public class AboutScreen : MonoBehaviour
 {
 	public Texture2D m_backgroundTexture;
-	public bool m_showLinkToChangeList = false;
 
 	private const string APPLICATION_INFORMATION = "<size=20>{0}\nVersion = {1}\nLibrary={2}\n\n\n</size>";
 
@@ -32,8 +31,8 @@ public class AboutScreen : MonoBehaviour
 	private const float BUTTON_WIDTH = 150.0f;
 	private const float BUTTON_HEIGHT = 75.0f;
 
-	private const float ABOUT_SCREEN_WIDTH = 1350;
-	private const float ABOUT_SCREEN_HEIGHT = 100;
+	private const float ABOUT_SCREEN_WIDTH = 600;
+	private const float ABOUT_SCREEN_HEIGHT = 300;
 
 	private Rect m_aboutScreenRect;
 	private Rect m_buttonRect;
@@ -55,7 +54,7 @@ public class AboutScreen : MonoBehaviour
 		m_aboutScreenRect = new Rect((Screen.width * 0.5f) - (ABOUT_SCREEN_WIDTH * 0.5f),
 		                             (Screen.height * 0.5f) - (ABOUT_SCREEN_HEIGHT * 0.5f),
 		                             ABOUT_SCREEN_WIDTH,
-		                             m_showLinkToChangeList ? ABOUT_SCREEN_HEIGHT * 3.0f : ABOUT_SCREEN_HEIGHT);
+		                             ABOUT_SCREEN_HEIGHT);
 
 		m_applicationName = AndroidHelper.GetCurrentApplicationLabel();
 		m_applicationVersion = AndroidHelper.GetVersionName(AndroidHelper.GetCurrentPackageName());
@@ -128,22 +127,19 @@ public class AboutScreen : MonoBehaviour
 		GUILayout.FlexibleSpace();
 		GUILayout.EndHorizontal();
 
-		if(m_showLinkToChangeList)
+		GUILayout.Space(40);
+
+		GUI.color = Color.blue;
+		if(GUILayout.Button("<size=20>Release Notes</size>"))
 		{
-			GUILayout.Space(40);
+			//m_isActive = false;
 
-			GUI.color = Color.blue;
-			if(GUILayout.Button("<size=20>Release Notes</size>"))
-			{
-				//m_isActive = false;
-
-	#if !UNITY_EDITOR && UNITY_ANDROID
-				string packageName = AndroidHelper.GetCurrentPackageName();
-				Application.OpenURL ("market://details?q=pname:" + packageName + "/");
-	#else
-				Application.OpenURL("http://play.google.com");
-	#endif
-			}
+#if !UNITY_EDITOR && UNITY_ANDROID
+			string packageName = AndroidHelper.GetCurrentPackageName();
+			Application.OpenURL ("market://details?q=pname:" + packageName + "/");
+#else
+			Application.OpenURL("http://play.google.com");
+#endif
 		}
 
 		GUI.color = oldColor;

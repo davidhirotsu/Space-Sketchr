@@ -152,21 +152,21 @@ public class CameraController : MonoBehaviour
         {
             m_firstPersonCamera = gameObject.AddComponent<FirstPersonCamera>();
         }
-        m_firstPersonCamera.SetCamera(m_targetObject, Vector3.zero, 0.5f);
+        m_firstPersonCamera.SetCamera(m_targetObject, Vector3.zero);
 
         m_thirdPersonCamera = gameObject.GetComponent<ThirdPersonCamera>() as IBaseCamera;
         if (m_thirdPersonCamera == null)
         {
             m_thirdPersonCamera = gameObject.AddComponent<ThirdPersonCamera>();
         }
-        m_thirdPersonCamera.SetCamera(m_targetObject, new Vector3(0.5f, 0.5f, -2.0f), 0.5f);
+        m_thirdPersonCamera.SetCamera(m_targetObject, new Vector3(0.5f, 0.5f, -2.0f));
 
         m_topDownCamera = gameObject.GetComponent<TopDownCamera>() as IBaseCamera;
         if (m_topDownCamera == null)
         {
             m_topDownCamera = gameObject.AddComponent<TopDownCamera>();
         }
-        m_topDownCamera.SetCamera(m_targetObject, new Vector3(0.0f, 15.0f, 0.0f), 0.5f);
+        m_topDownCamera.SetCamera(m_targetObject, new Vector3(0.0f, 15.0f, 0.0f));
 
         EnableCamera(CameraType.FIRST_PERSON);
 		_SetCursorState();
@@ -211,16 +211,16 @@ public class CameraController : MonoBehaviour
 			if (GUI.Button(new Rect(Screen.width - Common.UI_BUTTON_SIZE_X - Common.UI_BUTTON_GAP_X, 
 			                        Screen.height - ((Common.UI_BUTTON_SIZE_Y + Common.UI_LABEL_GAP_Y) * 3),
 			                        Common.UI_BUTTON_SIZE_X, 
-			                        Common.UI_BUTTON_SIZE_Y), "<size=20>First</size>"))
+			                        Common.UI_BUTTON_SIZE_Y), "<size=20>Third</size>"))
 			{
-				EnableCamera(CameraType.FIRST_PERSON);
+				EnableCamera(CameraType.THIRD_PERSON);
 			}
 			if (GUI.Button(new Rect(Screen.width - Common.UI_BUTTON_SIZE_X - Common.UI_BUTTON_GAP_X, 
 			                        Screen.height - ((Common.UI_BUTTON_SIZE_Y + Common.UI_LABEL_GAP_Y) * 2),
 			                        Common.UI_BUTTON_SIZE_X, 
-			                        Common.UI_BUTTON_SIZE_Y), "<size=20>Third</size>"))
+			                        Common.UI_BUTTON_SIZE_Y), "<size=20>First</size>"))
 			{
-				EnableCamera(CameraType.THIRD_PERSON);
+				EnableCamera(CameraType.FIRST_PERSON);
 			}
 			if (GUI.Button(new Rect(Screen.width - Common.UI_BUTTON_SIZE_X - Common.UI_BUTTON_GAP_X, 
 			                        Screen.height - (Common.UI_BUTTON_SIZE_Y + Common.UI_LABEL_GAP_Y),
