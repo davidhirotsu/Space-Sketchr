@@ -1625,7 +1625,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1655796752}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 33.2999992, z: 0}
+  m_LocalPosition: {x: 0, y: 33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1866144397}
@@ -1698,14 +1698,14 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: .691176474, g: .691176474, b: .691176474, a: .466666669}
   mPivot: 4
-  mWidth: 478
+  mWidth: 488
   mHeight: 44
   mDepth: 0
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 10.863636
-  keepCrispWhenShrunk: 1
+  aspectRatio: 11.090909
+  keepCrispWhenShrunk: 2
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: d0532d22c248e48a99ea783f86910d55, type: 2}
   mText: '...Tango is Calibrating ...'
@@ -1860,8 +1860,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1723823721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -27.7000008, z: 0}
-  m_LocalScale: {x: 1.00008798, y: 1.00008798, z: 1.00008798}
+  m_LocalPosition: {x: 0, y: -27, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1866144397}
   m_RootOrder: 2

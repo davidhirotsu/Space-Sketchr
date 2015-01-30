@@ -43,7 +43,7 @@ MonoBehaviour:
   mSprites:
   - name: BasicBrushIcon
     x: 261
-    y: 492
+    y: 420
     width: 67
     height: 67
     borderLeft: 0
@@ -56,19 +56,6 @@ MonoBehaviour:
     paddingBottom: 0
   - name: black
     x: 1262
-    y: 138
-    width: 256
-    height: 256
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: brush
-    x: 1262
     y: 399
     width: 256
     height: 256
@@ -80,8 +67,21 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: brush_normal
+  - name: brush
     x: 1784
+    y: 660
+    width: 256
+    height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: brush_normal
+    x: 1523
     y: 660
     width: 256
     height: 256
@@ -107,19 +107,6 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: ButtonRing
-    x: 1523
-    y: 660
-    width: 256
-    height: 256
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: CircleButtonBG
     x: 1262
     y: 660
     width: 256
@@ -132,7 +119,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: clear
+  - name: CircleButtonBG
     x: 1001
     y: 138
     width: 256
@@ -145,7 +132,7 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: folder
+  - name: clear
     x: 1001
     y: 399
     width: 256
@@ -158,9 +145,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: info
+  - name: folder
     x: 1001
     y: 660
+    width: 256
+    height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: info
+    x: 660
+    y: 94
     width: 256
     height: 256
     borderLeft: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: lfl-brush
-    x: 660
+    x: 399
     y: 94
     width: 256
     height: 256
@@ -199,7 +199,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: LFLBrushIcon
     x: 261
-    y: 348
+    y: 492
     width: 67
     height: 67
     borderLeft: 0
@@ -211,8 +211,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: normal-brush-icon
-    x: 399
-    y: 94
+    x: 660
+    y: 355
     width: 256
     height: 256
     borderLeft: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: play
-    x: 660
+    x: 399
     y: 355
     width: 256
     height: 256
@@ -237,19 +237,6 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: rainbow-brush
-    x: 399
-    y: 355
-    width: 256
-    height: 256
-    borderLeft: 0
-    borderRight: 0
-    borderTop: 0
-    borderBottom: 0
-    paddingLeft: 0
-    paddingRight: 0
-    paddingTop: 0
-    paddingBottom: 0
-  - name: rainbow-ring
     x: 660
     y: 616
     width: 256
@@ -262,9 +249,22 @@ MonoBehaviour:
     paddingRight: 0
     paddingTop: 0
     paddingBottom: 0
-  - name: save
+  - name: rainbow-ring
     x: 399
     y: 616
+    width: 256
+    height: 256
+    borderLeft: 0
+    borderRight: 0
+    borderTop: 0
+    borderBottom: 0
+    paddingLeft: 0
+    paddingRight: 0
+    paddingTop: 0
+    paddingBottom: 0
+  - name: save
+    x: 0
+    y: 42
     width: 256
     height: 256
     borderLeft: 0
@@ -303,7 +303,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: SplatterBrushIcon
     x: 261
-    y: 420
+    y: 348
     width: 67
     height: 67
     borderLeft: 0
@@ -316,7 +316,7 @@ MonoBehaviour:
     paddingBottom: 0
   - name: SquareButtonBG
     x: 0
-    y: 42
+    y: 303
     width: 256
     height: 256
     borderLeft: 0
@@ -328,8 +328,8 @@ MonoBehaviour:
     paddingTop: 0
     paddingBottom: 0
   - name: whitebrush
-    x: 0
-    y: 303
+    x: 1262
+    y: 138
     width: 256
     height: 256
     borderLeft: 0
