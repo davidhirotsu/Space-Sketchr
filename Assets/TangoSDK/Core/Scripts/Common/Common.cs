@@ -32,45 +32,72 @@ namespace Tango
         /// Codes returned by Tango API functions.
         /// </summary>
         public struct ErrorType
-		{
-			public static readonly int TANGO_NO_CAMERA_PERMISSION = -5;   /**< Camera access not allowed */
-			public static readonly int TANGO_NO_ADF_PERMISSION = -4;  /**< ADF access not allowed */
-			public static readonly int TANGO_NO_MOTION_TRACKING_PERMISSION = -3;  /**< Motion tracking not allowed*/
+        {
+            public static readonly int TANGO_NO_CAMERA_PERMISSION = -5;   /**< Camera access not allowed */
+            public static readonly int TANGO_NO_ADF_PERMISSION = -4;  /**< ADF access not allowed */
+            public static readonly int TANGO_NO_MOTION_TRACKING_PERMISSION = -3;  /**< Motion tracking not allowed*/
             public static readonly int TANGO_INVALID = -2;
             public static readonly int TANGO_ERROR = -1;
             public static readonly int TANGO_SUCCESS = 0;
         }
-        
-		public const string TANGO_UNITY_DLL = "tango_client_api";
 
-		public const string TANGO_PERMISSION_STRING = "";
-		public const string TANGO_MOTION_TRACKING_PERMISSIONS = "MOTION_TRACKING_PERMISSION";
-		public const string TANGO_ADF_LOAD_SAVE_PERMISSIONS = "ADF_LOAD_SAVE_PERMISSION";
+        /// <summary>
+        /// Metadata keys supported by Tango APIs
+        /// </summary>
+        public struct MetaDataKeyType
+        {
+            public const string KEY_UUID = "id";
+            public const string KEY_NAME = "name";
+            public const string KEY_DATE = "date_ms_since_epoch";
+            public const string KEY_TRANSFORMATION = "transformation";
+        }
+
+		public enum AndroidResult
+		{
+			SUCCESS = -1,
+			CANCELED = 0,
+			DENIED = 1
+		}
+
+        public const string TANGO_UNITY_DLL = "tango_client_api";
+
+        public const string TANGO_PERMISSION_STRING = "";
+        public const string TANGO_MOTION_TRACKING_PERMISSIONS = "MOTION_TRACKING_PERMISSION";
+        public const string TANGO_ADF_LOAD_SAVE_PERMISSIONS = "ADF_LOAD_SAVE_PERMISSION";
 		public const string TANGO_NO_PERMISSIONS_ERROR = "This application requires all Tango permissions to run. Please restart the application and grant Tango permissions.";
+		public const int TANGO_MOTION_TRACKING_PERMISSIONS_REQUEST_CODE = 42;
+		public const int TANGO_ADF_LOAD_SAVE_PERMISSIONS_REQUEST_CODE = 43;
 
         public const float UI_LABEL_START_X = 15.0f;
         public const float UI_LABEL_START_Y = 15.0f;
-        public const float UI_LABEL_SIZE_X = 1000.0f;
-        public const float UI_LABEL_SIZE_Y = 25.0f;
+        public const float UI_LABEL_SIZE_X = 1920.0f;
+        public const float UI_LABEL_SIZE_Y = 35.0f;
         public const float UI_LABEL_GAP_Y = 3.0f;
         public const float UI_BUTTON_SIZE_X = 125.0f;
         public const float UI_BUTTON_SIZE_Y = 65.0f;
-		public const float UI_BUTTON_GAP_X = 5.0f;
+        public const float UI_BUTTON_GAP_X = 5.0f;
         public const float UI_CAMERA_BUTTON_OFFSET = UI_BUTTON_SIZE_X + UI_BUTTON_GAP_X; 
         public const float UI_LABEL_OFFSET = UI_LABEL_GAP_Y + UI_LABEL_SIZE_Y;
+        public const float UI_FPS_LABEL_START_Y = UI_LABEL_START_Y + UI_LABEL_OFFSET;
+        public const float UI_EVENT_LABEL_START_Y = UI_FPS_LABEL_START_Y + UI_LABEL_OFFSET;
+        public const float UI_POSE_LABEL_START_Y = UI_EVENT_LABEL_START_Y + UI_LABEL_OFFSET;
+        public const float UI_DEPTH_LABLE_START_Y = UI_POSE_LABEL_START_Y + UI_LABEL_OFFSET;
+        public const string UI_FLOAT_FORMAT = "F3";
+        public const string UI_FONT_SIZE = "<size=25>";
 
         public const float UI_TANGO_VERSION_X = UI_LABEL_START_X;
         public const float UI_TANGO_VERSION_Y = UI_LABEL_START_Y;
         public const float UI_TANGO_APP_SPECIFIC_START_X = UI_TANGO_VERSION_X;
         public const float UI_TANGO_APP_SPECIFIC_START_Y = UI_TANGO_VERSION_Y + (UI_LABEL_OFFSET * 2);
 
-		public const string UX_SERVICE_VERSION = "Service Version: {0}";
-		public const string UX_TANGO_SERVICE_VERSION = "Tango Service Version: {0}";
-		public const string UX_TANGO_SYSTEM_EVENT = "Tango System Event: {0}";
-		public const string UX_TARGET_TO_BASE_FRAME = "Target->{0}, Base->{1}:";
-		public const string UX_STATUS = "\tStatus: {0}, Count: {1}, Delta Time(ms): {2}, Pose(m):[{3}], Quat:[{4}]";
+        public const string UX_SERVICE_VERSION = "Service version: {0}";
+        public const string UX_TANGO_SERVICE_VERSION = "Tango service version: {0}";
+        public const string UX_TANGO_SYSTEM_EVENT = "Tango system event: {0}";
+        public const string UX_TARGET_TO_BASE_FRAME = "Target->{0}, Base->{1}:";
+        public const string UX_STATUS = "\tstatus: {0}, count: {1}, delta time(ms): {2}, position (m): [{3}], orientation: [{4}]";
         
         public const int UUID_LENGTH = 37;
+        public const float SECOND_TO_MILLISECOND = 1000.0f;
         
     #if (UNITY_EDITOR)
         private static bool m_mirroring = true; 

@@ -2275,7 +2275,11 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
+<<<<<<< Updated upstream
   mWidth: 416
+=======
+  mWidth: 10
+>>>>>>> Stashed changes
   mHeight: 64
   mDepth: 5
   autoResizeBoxCollider: 0
@@ -5246,7 +5250,6 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:

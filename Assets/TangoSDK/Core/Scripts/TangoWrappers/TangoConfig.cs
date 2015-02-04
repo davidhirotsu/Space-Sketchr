@@ -98,8 +98,7 @@ namespace Tango
 	        } 
 	        else
 	        {
-	            DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_CRITICAL,
-				                                   CLASS_NAME + ".Free() No allocated Tango Config found!");
+				Debug.Log(CLASS_NAME + ".Free() No allocated Tango Config found!");
 	        }
 	    }
 
@@ -192,8 +191,7 @@ namespace Tango
 			if (!wasSuccess)
 			{
 #if UNITY_ANDROID && !UNITY_EDITOR
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR, 
-				                                   string.Format(m_ErrorLogFormat, "GetBool", key, false));
+				Debug.Log(string.Format(m_ErrorLogFormat, "GetBool", key, false));
 #endif
 			}
 			return wasSuccess;
@@ -214,8 +212,7 @@ namespace Tango
 	        }
 			if (!wasSuccess)
 			{
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR, 
-				                                   string.Format(m_ErrorLogFormat, "GetInt32", key, value));
+				Debug.Log(string.Format(m_ErrorLogFormat, "GetInt32", key, value));
 			}
 			return wasSuccess;
 	    }
@@ -235,8 +232,7 @@ namespace Tango
 	        }
 			if (!wasSuccess)
 			{
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR, 
-				                                   string.Format(m_ErrorLogFormat, "GetInt64", key, value));
+				Debug.Log(string.Format(m_ErrorLogFormat, "GetInt64", key, value));
 			}
 			return wasSuccess;
 	    }
@@ -256,8 +252,7 @@ namespace Tango
 	        }
 			if (!wasSuccess)
 			{
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR, 
-				                                   string.Format(m_ErrorLogFormat, "GetDouble", key, value));
+				Debug.Log(string.Format(m_ErrorLogFormat, "GetDouble", key, value));
 			}
 	        return wasSuccess;
 	    }
@@ -284,8 +279,7 @@ namespace Tango
 	            }
 				else
 				{
-					DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR, 
-					                                   string.Format(m_ErrorLogFormat, "GetString", key, value));
+					Debug.Log(string.Format(m_ErrorLogFormat, "GetString", key, value));
 				}
 	        }
 			return wasSuccess;
@@ -306,7 +300,7 @@ namespace Tango
 		{
 			if (tangoConfig == IntPtr.Zero)
 			{
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR, string.Format(m_ConfigErrorFormat, CLASS_NAME, tangoMethodName));
+				Debug.Log(string.Format(m_ConfigErrorFormat, CLASS_NAME, tangoMethodName));
 				return false;
 			}
 			bool wasSuccess = false;
@@ -317,14 +311,13 @@ namespace Tango
 			}
 			catch
 			{
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_INFO, string.Format(m_FailedConversionFormat, typeof(T)));
+				Debug.Log(string.Format(m_FailedConversionFormat, typeof(T)));
 				genericObj = default(T);
 			}
 			wasSuccess = apiCall(tangoConfig, configKey, genericObj) == Common.ErrorType.TANGO_SUCCESS;
 			if (!wasSuccess)
 			{
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR, 
-				                                   string.Format(m_ErrorLogFormat, CLASS_NAME, tangoMethodName, configKey, configValue));
+				Debug.Log(string.Format(m_ErrorLogFormat, CLASS_NAME, tangoMethodName, configKey, configValue));
 			}
 			return wasSuccess;
 		}

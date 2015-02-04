@@ -50,8 +50,7 @@ public class ARScreen : MonoBehaviour
         m_tangoCamera = GameObject.FindObjectOfType(typeof(Camera)) as Camera;
         if (m_tangoCamera == null)
         {
-            DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR, 
-                                               "ARScreen.Start : Camera not found!");
+			Debug.Log("ARScreen.Start : Camera not found!");
         }
         
         m_meshFilter = GetComponent<MeshFilter>();
@@ -68,8 +67,7 @@ public class ARScreen : MonoBehaviour
     {
         if (m_tangoCamera == null)
         {
-            DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR, 
-                                               "ARScreen.ResizeScreen : Camera not found!");
+			Debug.Log("ARScreen.ResizeScreen : Camera not found!");
         }
 
         m_frustumHeight = 2.0f * m_frustumLength * Mathf.Tan(m_tangoCamera.fieldOfView * 0.5f * Mathf.Deg2Rad);
