@@ -76,9 +76,9 @@ public class LFLTangoCameraCtrl : PoseListener
         if(m_tangoApplication != null)
         {
 			// Request Tango permissions
-			m_tangoApplication.RequestNecessaryPermissions();
+			m_tangoApplication.RequestNecessaryPermissionsAndConnect();
 
-			if(TangoApplication.HasGrantedPermissions())
+			if(m_tangoApplication.HasRequestedPermissions())
 			{
 				m_tangoApplication.InitApplication();
 				
