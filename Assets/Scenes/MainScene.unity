@@ -2275,13 +2275,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 416
+  mWidth: 424
   mHeight: 64
   mDepth: 5
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6.5
+  aspectRatio: 6.625
   keepCrispWhenShrunk: 2
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: d0532d22c248e48a99ea783f86910d55, type: 2}
@@ -6347,7 +6347,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11428818, guid: d186cf35fe4ba40b8beb0517ce6d0b9b, type: 2}
       propertyPath: mWidth
-      value: 416
+      value: 424
+      objectReference: {fileID: 0}
+    - target: {fileID: 11428818, guid: d186cf35fe4ba40b8beb0517ce6d0b9b, type: 2}
+      propertyPath: aspectRatio
+      value: 6.625
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d186cf35fe4ba40b8beb0517ce6d0b9b, type: 2}

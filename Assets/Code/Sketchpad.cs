@@ -211,6 +211,7 @@ public class Sketchpad : MonoBehaviour
 	{
 		pointList.Clear();
 
+		/*
 		basicBrushPointList.Clear();
 		lflBrushPointList.Clear();
 		splatterBrushPointList.Clear();
@@ -218,6 +219,7 @@ public class Sketchpad : MonoBehaviour
 		basicBrushParticleSystem.Clear();
 		lflBrushParticleSystem.Clear();
 		splatterBrushParticleSystem.Clear();
+		*/
 
 		particleSystemNeedsUpdate = true;
 	}
