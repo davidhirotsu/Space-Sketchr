@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Grid Blue
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 30, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 0c8884b768228452a99dce4d91396027, type: 3}
+          m_Texture: {fileID: 2800000, guid: c37217c29e47949a89c1b1c83fb36d69, type: 3}
           m_Scale: {x: 100, y: 100}
           m_Offset: {x: 0, y: 0}
       data:
@@ -50,4 +50,4 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .112889275, g: .141003534, b: .426470578, a: 1}
+        second: {r: .191176474, g: .191176474, b: .191176474, a: .258823544}

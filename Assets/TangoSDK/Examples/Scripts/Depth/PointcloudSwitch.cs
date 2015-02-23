@@ -30,26 +30,22 @@ public class PointcloudSwitch : MonoBehaviour
     public GUISkin guiSkin;
     public Pointcloud pointcloud;
 
+	private TangoApplication m_tangoApplication;
 
-
+	private void Start()
+	{
+		m_tangoApplication = FindObjectOfType<TangoApplication>();
+	}
+	
     /// <summary>
     /// GUI for switch getting data API and status.
     /// </summary>
     private void OnGUI()
     {
-		if(TangoApplication.HasRequestedPermissions())
+		if(m_tangoApplication.HasRequestedPermissions())
 		{
 			Color oldColor = GUI.color;
 			GUI.color = Color.gray;
-			
-			if(!TangoApplication.HasGrantedPermissions())
-			{
-				GUI.Label(new Rect(Common.UI_LABEL_START_X, 
-				                   Common.UI_LABEL_START_Y, 
-				                   Common.UI_LABEL_SIZE_X , 
-				                   Common.UI_LABEL_SIZE_Y), "<size=15>" + Common.TANGO_NO_PERMISSIONS_ERROR + "</size>");
-				return;
-			}
 			
 			GUI.Label(new Rect(Common.UI_LABEL_START_X, 
 			                   Common.UI_LABEL_START_Y, 
@@ -60,18 +56,18 @@ public class PointcloudSwitch : MonoBehaviour
 	        GUI.Label(new Rect(Common.UI_LABEL_START_X, 
 			                   Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET, 
 	                           Common.UI_LABEL_SIZE_X , 
-	                           Common.UI_LABEL_SIZE_Y), "<size=15>Point Count: " + pointcloud.m_pointsCount.ToString() + "</size>");
+			                   Common.UI_LABEL_SIZE_Y), "<size=15>Average Depth (m): " + pointcloud.m_overallZ.ToString() + "</size>");
 
 	        GUI.Label(new Rect(Common.UI_LABEL_START_X, 
 			                   Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 2.0f, 
 	                           Common.UI_LABEL_SIZE_X , 
-	                           Common.UI_LABEL_SIZE_Y), "<size=15>Average Depth (m): " + pointcloud.m_overallZ.ToString() + "</size>");
+			                   Common.UI_LABEL_SIZE_Y), "<size=15>Point Count: " + pointcloud.m_pointsCount.ToString() + "</size>");
 
 
 	        GUI.Label(new Rect(Common.UI_LABEL_START_X, 
 			                   Common.UI_LABEL_START_Y + Common.UI_LABEL_OFFSET * 3.0f, 
 	                           Common.UI_LABEL_SIZE_X , 
-	                           Common.UI_LABEL_SIZE_Y), "<size=15>Frame Delta Time (ms): " + pointcloud.GetTimeSinceLastFrame().ToString("0.") + "</size>");
+	                           Common.UI_LABEL_SIZE_Y), "<size=15>Frame delta time (ms): " + pointcloud.GetTimeSinceLastFrame().ToString("0.") + "</size>");
 	    
 			GUI.color = oldColor;
 		}

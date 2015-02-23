@@ -38,13 +38,11 @@ namespace Tango
             int returnValue = DepthAPI.TangoService_connectOnXYZijAvailable(callback);
             if (returnValue != Common.ErrorType.TANGO_SUCCESS)
             {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR,
-                                                   "DepthProvider.SetCallback() Callback was not set!");
+				Debug.Log("DepthProvider.SetCallback() Callback was not set!");
             }
             else
             {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_INFO,
-                                                   "DepthProvider.SetCallback() OnDepth callback was set!");
+                Debug.Log("DepthProvider.SetCallback() OnDepth callback was set!");
             }
         }
 

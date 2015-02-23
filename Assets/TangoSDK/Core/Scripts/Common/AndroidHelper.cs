@@ -19,12 +19,82 @@ using UnityEngine;
 /// <summary>
 /// Helper functions for common android functionality.
 /// </summary>
+using System;
+
+
 public class AndroidHelper : MonoBehaviour
 {
 	private const string PERMISSION_REQUESTER = "com.projecttango.permissionrequester.RequestManagerActivity";
 #pragma warning disable 414
 	private static AndroidJavaObject m_unityActivity = null;
 #pragma warning restore 414
+
+	private static AndroidLifecycleCallbacks m_callbacks;
+
+	/// <summary>
+	/// Registers for the Android pause event.
+	/// </summary>
+	/// <param name="onPause">On pause.</param>
+	public static void RegisterPauseEvent(OnPauseEventHandler onPause)
+	{
+		#if UNITY_ANDROID && !UNITY_EDITOR
+		if(m_callbacks == null)
+		{
+			RegisterCallbacks();
+		}
+
+		m_callbacks.RegisterOnPause(onPause);
+		#endif
+	}
+
+	/// <summary>
+	/// Registers for the Android resume event.
+	/// </summary>
+	/// <param name="onResume">On resume.</param>
+	public static void RegisterResumeEvent(OnResumeEventHandler onResume)
+	{
+		#if UNITY_ANDROID && !UNITY_EDITOR
+		if(m_callbacks == null)
+		{
+			RegisterCallbacks();
+		}
+		
+		m_callbacks.RegisterOnResume(onResume);
+		#endif
+	}
+
+	/// <summary>
+	/// Registers for the Android on activity result event.
+	/// </summary>
+	/// <param name="onActivityResult">On activity result.</param>
+	public static void RegisterOnActivityResultEvent(OnActivityResultEventHandler onActivityResult)
+	{
+		#if UNITY_ANDROID && !UNITY_EDITOR
+		if(m_callbacks == null)
+		{
+			RegisterCallbacks();
+		}
+		
+		m_callbacks.RegisterOnActivityResult(onActivityResult);
+		#endif
+    }
+
+	/// <summary>
+	/// Inializes the AndroidJavaProxy for the Android lifecycle callbacks.
+	/// </summary>
+	private static void RegisterCallbacks()
+	{
+		#if UNITY_ANDROID && !UNITY_EDITOR
+		m_callbacks = new AndroidLifecycleCallbacks();
+
+		m_unityActivity = GetUnityActivity();
+		if(m_unityActivity != null)
+		{
+			Debug.Log("AndroidLifecycle callback set");
+			m_unityActivity.Call("attachLifecycleListener", m_callbacks);
+		}
+		#endif
+	}
 
 	/// <summary>
 	/// Gets the unity activity.
@@ -99,7 +169,19 @@ public class AndroidHelper : MonoBehaviour
 		if(unityActivity != null && !string.IsNullOrEmpty(packageName))
 		{
 			AndroidJavaObject packageManager = unityActivity.Call<AndroidJavaObject>("getPackageManager");
-			return packageManager.Call<AndroidJavaObject>("getPackageInfo", packageName, 0);
+			AndroidJavaObject packageInfo = null;
+
+			try
+			{
+				packageInfo = packageManager.Call<AndroidJavaObject>("getPackageInfo", packageName, 0);
+			}
+			catch(AndroidJavaException e)
+			{
+				Debug.Log("AndroidJavaException : " + e.Message);
+				packageInfo = null;
+			}
+
+			return packageInfo;
 		}
 
 		return null;
@@ -177,15 +259,110 @@ public class AndroidHelper : MonoBehaviour
 		
 		if(unityActivity != null)
 		{
-			string packageName = GetCurrentPackageName();
+			int requestCode = 0;
+			string[] args = new string[1];
 
-			AndroidJavaObject intentObject = new AndroidJavaObject("android.content.Intent");
+			if(permissionsType == Tango.Common.TANGO_MOTION_TRACKING_PERMISSIONS)
+			{
+				requestCode = Tango.Common.TANGO_MOTION_TRACKING_PERMISSIONS_REQUEST_CODE;
+				args[0] = "PERMISSIONTYPE:" + Tango.Common.TANGO_MOTION_TRACKING_PERMISSIONS;
+			}
+			else if(permissionsType == Tango.Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS)
+			{
+				requestCode = Tango.Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS_REQUEST_CODE;
+				args[0] = "PERMISSIONTYPE:" + Tango.Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS;
+			}
 
-			intentObject.Call<AndroidJavaObject>("setClassName", packageName, PERMISSION_REQUESTER);
-			intentObject.Call<AndroidJavaObject>("putExtra", "classname", "com.google.atap.tango.RequestPermissionActivity");
-			intentObject.Call<AndroidJavaObject>("putExtra", "string_args", "PERMISSIONTYPE:" + permissionsType);
-
-			unityActivity.Call("startActivity", intentObject);
+			if(requestCode != 0)
+			{
+				unityActivity.Call("LaunchIntent", "com.projecttango.tango", "com.google.atap.tango.RequestPermissionActivity", args, requestCode);
+			}
+			else
+			{
+				Debug.Log("Invalid permission request");
+			}
 		}
 	}
+
+	/// <summary>
+	/// Determines if is tango core present.
+	/// </summary>
+	/// <returns><c>true</c> if is tango core present; otherwise, <c>false</c>.</returns>
+	public static bool IsTangoCorePresent()
+	{
+		AndroidJavaObject unityActivity = GetUnityActivity();
+		
+		if(unityActivity != null)
+		{
+			if(GetPackageInfo("com.projecttango.tango") != null)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <summary>
+	/// Determines if the application has Tango permissions.
+	/// </summary>
+	/// <returns><c>true</c> if application has tango permissions; otherwise, <c>false</c>.</returns>
+	public static bool ApplicationHasTangoPermissions(string permissionType)
+	{
+		AndroidJavaObject unityActivity = GetUnityActivity();
+		
+		if(unityActivity != null)
+		{
+			return unityActivity.Call<bool>("hasPermission", permissionType);
+        }
+        
+        return false;
+	}
+
+	/// <summary>
+	/// Shows the android toast message.
+	/// </summary>
+	/// <param name="message">Message.</param>
+	/// <param name="callFinish">If set to <c>true</c> call finish on the unity activity.</param>
+	public static void ShowAndroidToastMessage(string message, bool callFinish)
+	{
+		AndroidJavaObject unityActivity = GetUnityActivity();
+		
+		if(unityActivity != null)
+		{
+			AndroidJavaClass toastClass = new AndroidJavaClass("android.widget.Toast");
+
+			unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() => {
+				AndroidJavaObject toastObject = toastClass.CallStatic<AndroidJavaObject>("makeText", unityActivity, message, 0x00000001);
+				toastObject.Call("show");
+			}));
+        }
+
+		if(callFinish)
+		{
+			AndroidFinish();
+		}
+	}
+
+	/// <summary>
+	/// Calls finish on the Unity Activity.
+	/// </summary>
+	public static void AndroidFinish()
+	{
+		AndroidJavaObject unityActivity = GetUnityActivity();
+		
+		if(unityActivity != null)
+		{
+			unityActivity.Call("finish");
+		}
+	}
+	
+	/// <summary>
+	/// Calls quit on the Unity Activity.
+	/// </summary>
+	public static void AndroidQuit()
+	{
+		AndroidJavaClass system = new AndroidJavaClass("java.lang.System");
+		system.CallStatic("exit", 0);
+    }
 }

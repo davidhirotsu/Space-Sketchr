@@ -156,7 +156,7 @@ public class FrustrumDisplay : IBasePostRenderer
         ARScreen screenRef = GetComponent<ARScreen>();
         if (transform.parent == null)
         {
-            DebugLogger.print("Use ArScreen with TangoController only.");
+			Debug.Log("Use ArScreen with TangoController only.");
         }
         else
         {

@@ -19,7 +19,7 @@ using UnityEngine;
 /// <summary>
 /// Frustrum render.
 /// </summary>
-public class FrustrumLineRender : MonoBehaviour 
+public class FrustrumLineRender : IBasePostRenderer 
 {
 	// ar camera
 	public Camera cam;
@@ -41,13 +41,15 @@ public class FrustrumLineRender : MonoBehaviour
 		lt = new Vector3(0.0f, cam.pixelHeight, distance);
 		rb = new Vector3(cam.pixelWidth, 0.0f, distance);
 		rt = new Vector3(cam.pixelWidth, cam.pixelHeight, distance);
+		lineMat.color = Color.white;
 	}
 
 	/// <summary>
 	/// Unity post render call back.
 	/// </summary>
-	private void OnPostRender() 
+	public override void OnPostRender() 
 	{	
+		Debug.Log("Rendering");
 		Vector3 pos0 = cam.transform.position;
 		Vector3 pos1 = cam.ScreenToWorldPoint(lb);
 		Vector3 pos2 = cam.ScreenToWorldPoint(lt);
@@ -58,7 +60,7 @@ public class FrustrumLineRender : MonoBehaviour
 		lineMat.SetPass(0);
 		GL.Begin(GL.LINES);
 
-		GL.Color(Color.white);
+		GL.Color(Color.red);
 		GL.Vertex(pos0);
 		GL.Vertex(pos1);
 		GL.Vertex(pos0);

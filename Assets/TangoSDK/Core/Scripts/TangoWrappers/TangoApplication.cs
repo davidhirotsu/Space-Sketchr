@@ -22,21 +22,35 @@ using UnityEngine;
 
 namespace Tango
 {
+	public delegate void PermissionsEvent(bool permissionsGranted);
+
     /// <summary>
     /// Entry point of Tango applications, maintain the application handler.
     /// </summary>
     public class TangoApplication : MonoBehaviour 
-    {
+	{	
+		///<summary>
+		/// Permission types used by Tango applications.
+		/// </summary>
+		[Flags]
+		private enum PermissionsTypes
+		{
+			// All entries must be a power of two for
+			// use in a bit field as flags.
+			NONE = 0,
+			MOTION_TRACKING = 0x1,
+			AREA_LEARNING = 0x2,
+		}
+
         public bool m_enableMotionTracking = true;
         public bool m_enableDepth = true;
         public bool m_motionTrackingAutoReset = true;
-		public bool m_enableAreaLearning = true;
-		private bool m_areaLearningSetSucces = false;
+		public bool m_enableAreaLearning = false;
+		public bool m_enableADFSaveLoad = false;
 
 		private static string m_tangoServiceVersion = string.Empty;
 
 		private const string CLASS_NAME = "TangoApplication";
-
         private const string ANDROID_PRO_LABEL_TEXT = "<size=30>Tango plugin requires Unity Android Pro!</size>";
         private const float ANDROID_PRO_LABEL_PERCENT_X = 0.5f;
         private const float ANDROID_PRO_LABEL_PERCENT_Y = 0.5f;
@@ -46,15 +60,17 @@ namespace Tango
 		private const string MOTION_TRACKING_LOG_PREFIX = "Motion tracking mode : ";
 		private const int MINIMUM_API_VERSION = 1978;
 
-        private DepthProvider m_depthProvider;
-		private IntPtr m_callbackContext = IntPtr.Zero;
+		private event PermissionsEvent m_permissionEvent;
+
+		private PermissionsTypes m_requiredPermissions = 0;
+
 		private static bool m_isValidTangoAPIVersion = false;
 		private static bool m_hasVersionBeenChecked = false;
-		private static bool m_permissionsRequested = false;
-		private static bool m_permissionsGranted = false;
-
+		private DepthProvider m_depthProvider;
+		private IntPtr m_callbackContext = IntPtr.Zero;
 		private bool m_isServiceConnected = false;
 		private bool m_shouldReconnectService = false;
+		private bool m_isDisconnecting = false;
 
 		/// <summary>
 		/// Gets the tango service version.
@@ -71,43 +87,58 @@ namespace Tango
 		}
 
 		/// <summary>
-		/// Determines if the application has Tango permissions.
+		/// Determines if has requested permissions.
 		/// </summary>
-		/// <returns><c>true</c> if has permissions; otherwise, <c>false</c>.</returns>
-		public static bool HasGrantedPermissions()
+		/// <returns><c>true</c> if has requested permissions; otherwise, <c>false</c>.</returns>
+		public bool HasRequestedPermissions()
 		{
-			return m_permissionsGranted;
+			return (m_requiredPermissions == PermissionsTypes.NONE);
 		}
 
-		public static bool HasRequestedPermissions()
+		/// <summary>
+		/// Registers the permissions callback.
+		/// </summary>
+		/// <param name="permissionsEventHandler">Permissions event handler.</param>
+		public void RegisterPermissionsCallback(PermissionsEvent permissionsEventHandler)
 		{
-			return m_permissionsRequested;
+			if(permissionsEventHandler != null)
+			{
+				m_permissionEvent += permissionsEventHandler;
+			}
 		}
+
+		/// <summary>
+		/// Removes the permissions callback.
+		/// </summary>
+		/// <param name="permissionsEventHandler">Permissions event handler.</param>
+		public void RemovePermissionsCallback(PermissionsEvent permissionsEventHandler)
+		{
+			if(permissionsEventHandler != null)
+			{
+				m_permissionEvent -= permissionsEventHandler;
+			}
+		}
+
 		
 		/// <summary>
 		/// Requests the necessary permissions for Tango functionality.
 		/// </summary>
-		/// <returns><c>true</c>, if necessary permissions were granted from the permissions prompts, <c>false</c> otherwise.</returns>
-		public void RequestNecessaryPermissions()
+		public void RequestNecessaryPermissionsAndConnect()
 		{
-			Debug.Log("-------------------------------------Checking permissions"); 
-			bool motionTrackingPermissions = _RequestPermissions(Common.TANGO_MOTION_TRACKING_PERMISSIONS);
-			bool adfLoadSavePermissions = _RequestPermissions(Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS);
-			m_permissionsGranted = (motionTrackingPermissions && adfLoadSavePermissions);
-			Debug.Log("-------------------------------------Permissions were accepted = " + m_permissionsGranted); 
-			m_permissionsRequested = true;
+			_ResetPermissionsFlags();
+			_RequestNextPermission();
 		}
-
-        /// <summary>
-        /// Initialize Tango Service and Config.
-        /// </summary>
-        public void InitApplication()
+		
+		/// <summary>
+		/// Initialize Tango Service and Config.
+		/// </summary>
+		public void InitApplication()
 		{
 			Debug.Log("-----------------------------------Initializing Tango");
-            _TangoInitialize();
+			_TangoInitialize();
 			TangoConfig.InitConfig(TangoEnums.TangoConfigType.TANGO_CONFIG_DEFAULT);
-        }
-
+		}
+		
 		/// <summary>
 		/// Initialize the providers.
 		/// </summary>
@@ -118,107 +149,46 @@ namespace Tango
 			_InitializeDepth();
 			_InitializeOverlay();
 			_SetEventCallbacks();
+			_InitializeOverlay();
 		}
-
+		
 		/// <summary>
 		/// Connects to Tango Service.
 		/// </summary>
 		public void ConnectToService()
 		{
-			m_isServiceConnected = true;
+			Debug.Log("TangoApplication.ConnectToService()");
 			_TangoConnect();
+		}
+
+		/// <summary>
+		/// Shutdown this instance.
+		/// </summary>
+		public void Shutdown()
+		{
+			Debug.Log("Tango Shutdown");
+			TangoConfig.Free();
+			_TangoDisconnect();
 		}
 
 		/// <summary>
 		/// Helper method that will resume the tango services on App Resume.
 		/// Locks the config again and connects the service.
 		/// </summary>
-		private void ResumeTangoServices()
+		private void _ResumeTangoServices()
 		{
-			_TangoConnect();
+			RequestNecessaryPermissionsAndConnect();
 		}
-
+		
 		/// <summary>
 		/// Helper method that will suspend the tango services on App Suspend.
 		/// Unlocks the tango config and disconnects the service.
 		/// </summary>
-		private void SuspendTangoServices()
+		private void _SuspendTangoServices()
 		{
+			Debug.Log("Suspending Tango Service");
 			_TangoDisconnect();
 		}
-
-		void OnDestroy()
-		{
-			TangoConfig.Free();
-			_TangoDisconnect();
-		}
-
-		/// <summary>
-		/// Callback for when Unity app goes to background/foreground states.
-		/// </summary>
-		/// <param name="didPause">If <c>true</c> application is in the background.</param>
-		private void OnApplicationPause(bool isPaused)
-		{
-			if(!isPaused)
-			{
-				if(m_shouldReconnectService)
-				{
-					ResumeTangoServices();
-				}
-			}
-			else
-			{
-				if(m_isServiceConnected)
-				{
-					m_shouldReconnectService = true;
-					SuspendTangoServices();
-				}
-			}
-		}
-
-		/// <summary>
-		/// Request permissions for Unity functionality.
-		/// </summary>
-		/// <returns><c>true</c>, if request permissions was _ed, <c>false</c> otherwise.</returns>
-		/// <param name="permissionType">Permission type.</param>
-		private bool _RequestPermissions(string permissionType)
-		{
-#if !UNITY_EDITOR && UNITY_ANDROID
-			// verify
-			string syncFile = "data/data/" + AndroidHelper.GetCurrentPackageName() + "/files/activity_result";
-			string result = string.Empty;
-			File.Delete(syncFile);
-
-			// request
-			AndroidHelper.StartTangoPermissionsActivity(permissionType);
-
-			while(!File.Exists(syncFile))
-			{
-				// sit and spin while waiting for the permissions intent to 
-				// steal focus from Unity. Once the intent returns this text
-				// file will exist.
-			}
-
-			try
-			{
-				StreamReader streamReader = new StreamReader(syncFile);
-				result = streamReader.ReadLine();
-				streamReader.Close();
-			}
-			catch (System.IO.FileNotFoundException e)
-			{
-				Debug.Log(CLASS_NAME + "._RequestPermissions : File Not Found: " + e.Message);
-			}
-
-			if(string.IsNullOrEmpty(result) == false)
-			{
-				return (result == "RESULT_OK");
-			}
-#endif
-
-			return false;
-		}
-        
 		/// <summary>
 		/// Set callbacks on all PoseListener objects.
 		/// </summary>
@@ -269,6 +239,22 @@ namespace Tango
                 }
             }
         }
+
+		/// <summary>
+		/// Set callbacks for all VideoOverlayListener objects.
+		/// </summary>
+		private void _SetVideoOverlayCallbacks()
+		{
+			VideoOverlayListener[] videoOverlayListeners = FindObjectsOfType<VideoOverlayListener>();
+			
+			foreach (VideoOverlayListener videoOverlayListener in videoOverlayListeners)
+			{
+				if (videoOverlayListener != null)
+				{
+					videoOverlayListener.SetCallback(TangoEnums.TangoCameraId.TANGO_CAMERA_COLOR);
+				}
+			}
+		}
 		
 		/// <summary>
 		/// Initialize motion tracking.
@@ -278,11 +264,22 @@ namespace Tango
 			System.Collections.Generic.List<TangoCoordinateFramePair> framePairs = new System.Collections.Generic.List<TangoCoordinateFramePair>();
 			if (TangoConfig.SetBool(TangoConfig.Keys.ENABLE_AREA_LEARNING_BOOL, m_enableAreaLearning) && m_enableAreaLearning)
 			{
-				m_areaLearningSetSucces = true;
-			}
-			else
-			{
-				m_areaLearningSetSucces = false;
+				Debug.Log("Area Learning is enabled.");
+                if(!string.IsNullOrEmpty(UUID))
+                {
+                        TangoConfig.SetString(TangoConfig.Keys.LOAD_AREA_DESCRIPTION_UUID_STRING, UUID);
+                }
+                
+                TangoCoordinateFramePair areaDescription;
+                areaDescription.baseFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_AREA_DESCRIPTION;
+                areaDescription.targetFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_DEVICE;
+                
+                TangoCoordinateFramePair startToADF;
+                startToADF.baseFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_AREA_DESCRIPTION;
+                startToADF.targetFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_START_OF_SERVICE;
+                
+                framePairs.Add(areaDescription);
+                framePairs.Add(startToADF);
 			}
 
             
@@ -291,23 +288,6 @@ namespace Tango
 				TangoCoordinateFramePair motionTracking;
 				motionTracking.baseFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_START_OF_SERVICE;
 				motionTracking.targetFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_DEVICE;
-                
-				if(!string.IsNullOrEmpty(UUID))
-				{
-					TangoConfig.SetString(TangoConfig.Keys.LOAD_AREA_DESCRIPTION_UUID_STRING, UUID);
-					
-					TangoCoordinateFramePair areaDescription;
-					areaDescription.baseFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_AREA_DESCRIPTION;
-					areaDescription.targetFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_DEVICE;
-
-					TangoCoordinateFramePair startToADF;
-					startToADF.baseFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_AREA_DESCRIPTION;
-					startToADF.targetFrame = TangoEnums.TangoCoordinateFrameType.TANGO_COORDINATE_FRAME_START_OF_SERVICE;
-					
-					framePairs.Add(areaDescription);
-					framePairs.Add(startToADF);
-				}
-
 				framePairs.Add(motionTracking);
             }
 
@@ -330,8 +310,8 @@ namespace Tango
             }
 			bool depthConfigValue = false;
 			TangoConfig.GetBool(TangoConfig.Keys.ENABLE_DEPTH_PERCEPTION_BOOL, ref depthConfigValue);
-			DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_INFO, "TangoConfig bool for key: " + TangoConfig.Keys.ENABLE_DEPTH_PERCEPTION_BOOL
-			                                   + " has value set of: " + depthConfigValue);
+			Debug.Log("TangoConfig bool for key: " + TangoConfig.Keys.ENABLE_DEPTH_PERCEPTION_BOOL
+			          + " has value set of: " + depthConfigValue);
         }
 
         /// <summary>
@@ -339,7 +319,7 @@ namespace Tango
         /// </summary>
         private void _InitializeOverlay()
         {
-            //TODO
+			_SetVideoOverlayCallbacks();
         }
         
 		/// <summary>
@@ -353,19 +333,16 @@ namespace Tango
 	            if (status != Common.ErrorType.TANGO_SUCCESS)
 	            {
 					Debug.Log("-------------------Tango initialize status : " + status);
-	                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_CRITICAL,
-					                                   CLASS_NAME + ".Initialize() The service has not been initialized!");
+					Debug.Log(CLASS_NAME + ".Initialize() The service has not been initialized!");
 	            }
 	            else
 	            {
-	                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_INFO,
-					                                   CLASS_NAME + ".Initialize() Tango was initialized!");
+					Debug.Log(CLASS_NAME + ".Initialize() Tango was initialized!");
 	            }
 			}
 			else
 			{
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_CRITICAL,
-				                                   CLASS_NAME + ".Initialize() Invalid API version. please update to minimul API version.");
+				Debug.Log(CLASS_NAME + ".Initialize() Invalid API version. please update to minimul API version.");
 			}
         }
         
@@ -374,32 +351,37 @@ namespace Tango
 		/// </summary>
         private void _TangoConnect()
         {
-			if (TangoServiceAPI.TangoService_connect(m_callbackContext, TangoConfig.GetConfig()) != Common.ErrorType.TANGO_SUCCESS)
-            {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_CRITICAL,
-				                                   CLASS_NAME + ".Connect() Could not connect to the Tango Service!");
-            }
-            else
-            {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_INFO,
-				                                   CLASS_NAME + ".Connect() Tango client connected to service!");
-            }
+			if(!m_isServiceConnected)
+			{
+				m_isServiceConnected = true;
+				if (TangoServiceAPI.TangoService_connect(m_callbackContext, TangoConfig.GetConfig()) != Common.ErrorType.TANGO_SUCCESS)
+	            {
+					Debug.Log(CLASS_NAME + ".Connect() Could not connect to the Tango Service!");
+	            }
+	            else
+	            {
+					Debug.Log(CLASS_NAME + ".Connect() Tango client connected to service!");
+	            }
+			}
         }
         
 		/// <summary>
 		/// Disconnect from the Tango Service.
 		/// </summary>
         private void _TangoDisconnect()
-        {
+		{
+			Debug.Log(CLASS_NAME + ".Disconnect() Disconnecting from the Tango Service");
+			m_isDisconnecting = true;
+			m_isServiceConnected = false;
             if (TangoServiceAPI.TangoService_disconnect() != Common.ErrorType.TANGO_SUCCESS)
             {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_CRITICAL,
-				                                   CLASS_NAME + ".Disconnect() Could not disconnect from the Tango Service!");
+				Debug.Log(CLASS_NAME + ".Disconnect() Could not disconnect from the Tango Service!");
+				m_isDisconnecting = false;
             }
             else
             {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_INFO,
-				                                   CLASS_NAME + ".Disconnect() Tango client disconnected from service!");
+				Debug.Log(CLASS_NAME + ".Disconnect() Tango client disconnected from service!");
+				m_isDisconnecting = false;
             }
         }
 
@@ -435,6 +417,144 @@ namespace Tango
 		private static int _GetTangoAPIVersion()
 		{
 			return AndroidHelper.GetVersionCode("com.projecttango.tango");
+		}
+
+		/// <summary>
+		/// Android on pause.
+		/// </summary>
+		private void _androidOnPause()
+		{
+			if(m_isServiceConnected && m_requiredPermissions == PermissionsTypes.NONE)
+			{
+				Debug.Log ("Pausing services");
+				m_shouldReconnectService = true;
+				_SuspendTangoServices();
+			}
+			Debug.Log("androidOnPause");
+		}
+
+		/// <summary>
+		/// Android on resume.
+		/// </summary>
+		private void _androidOnResume()
+		{
+			if(m_shouldReconnectService)
+			{
+				Debug.Log ("Resuming services");
+				m_shouldReconnectService = false;
+				_ResumeTangoServices();
+			}
+			Debug.Log ("androidOnResume");
+		}
+
+		/// <summary>
+		/// EventHandler for Android's on activity result.
+		/// </summary>
+		/// <param name="requestCode">Request code.</param>
+		/// <param name="resultCode">Result code.</param>
+		/// <param name="data">Data.</param>
+		private void _androidOnActivityResult(int requestCode, int resultCode, AndroidJavaObject data)
+		{
+			Debug.Log("Activity returned result code : " + resultCode);
+
+			// was it accepted?
+			if(resultCode == (int)Common.AndroidResult.SUCCESS)
+			{
+				Debug.Log("Toggle these permissions");
+				if(requestCode == Common.TANGO_MOTION_TRACKING_PERMISSIONS_REQUEST_CODE)
+				{
+					m_requiredPermissions ^= PermissionsTypes.MOTION_TRACKING;
+				}
+				else if(requestCode == Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS_REQUEST_CODE)
+				{
+					m_requiredPermissions ^= PermissionsTypes.AREA_LEARNING;
+				}
+
+				// are we still waiting on permissions?
+				if(m_requiredPermissions == 0) // all permissions are good!
+				{
+					Debug.Log("All permissions have been accepted!");
+					if(m_permissionEvent != null)
+					{
+						Debug.Log("Firing permission event with value TRUE!");
+						m_permissionEvent(true);
+					}
+				}
+				else
+				{
+					Debug.Log("Firing permission event with value FALSE!");
+					_RequestNextPermission();
+				}
+			}
+			else
+			{
+				m_requiredPermissions = PermissionsTypes.NONE;
+				if(m_permissionEvent != null)
+				{
+					m_permissionEvent(false);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Awake this instance.
+		/// </summary>
+		private void Awake()
+		{
+			AndroidHelper.RegisterPauseEvent(_androidOnPause);
+			AndroidHelper.RegisterResumeEvent(_androidOnResume);
+			AndroidHelper.RegisterOnActivityResultEvent(_androidOnActivityResult);
+		}
+
+		/// <summary>
+		/// Reset permissions flags.
+		/// </summary>
+		private void _ResetPermissionsFlags()
+		{
+			if(m_requiredPermissions == PermissionsTypes.NONE)
+			{
+				m_requiredPermissions |= m_enableMotionTracking ? PermissionsTypes.MOTION_TRACKING : PermissionsTypes.NONE;
+				m_requiredPermissions |= (m_enableAreaLearning | m_enableADFSaveLoad) ? PermissionsTypes.AREA_LEARNING : PermissionsTypes.NONE;
+			}
+		}
+
+		/// <summary>
+		/// Request next permission.
+		/// </summary>
+		private void _RequestNextPermission()
+		{
+			// if no permissions are needed let's kick-off the Tango connect
+			if(m_requiredPermissions == PermissionsTypes.NONE)
+			{
+				if(m_permissionEvent != null)
+				{
+					Debug.Log("No permissions needed. Firing permission event with value TRUE!");
+                    m_permissionEvent(true);
+                }
+            }
+
+            if((m_requiredPermissions & PermissionsTypes.MOTION_TRACKING) == PermissionsTypes.MOTION_TRACKING)
+			{
+				if(AndroidHelper.ApplicationHasTangoPermissions(Common.TANGO_MOTION_TRACKING_PERMISSIONS))
+				{
+					_androidOnActivityResult(Common.TANGO_MOTION_TRACKING_PERMISSIONS_REQUEST_CODE, -1, null);
+				}
+				else
+				{
+					AndroidHelper.StartTangoPermissionsActivity(Common.TANGO_MOTION_TRACKING_PERMISSIONS);
+				}
+			}
+			else if((m_requiredPermissions & PermissionsTypes.AREA_LEARNING) == PermissionsTypes.AREA_LEARNING)
+			{
+				if(AndroidHelper.ApplicationHasTangoPermissions(Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS))
+				{
+					_androidOnActivityResult(Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS_REQUEST_CODE, -1, null);
+                }
+				else
+				{
+					AndroidHelper.StartTangoPermissionsActivity(Common.TANGO_ADF_LOAD_SAVE_PERMISSIONS);
+				}
+			}
 		}
 
         #region NATIVE_FUNCTIONS

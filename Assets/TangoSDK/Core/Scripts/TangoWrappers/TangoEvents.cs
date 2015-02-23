@@ -39,13 +39,11 @@ namespace Tango
             int returnValue = EventsAPI.TangoService_connectOnTangoEvent(callback);
             if (returnValue != Common.ErrorType.TANGO_SUCCESS)
             {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR,
-                                                   "TangoEvents.SetCallback() Callback was not set!");
+				Debug.Log("TangoEvents.SetCallback() Callback was not set!");
             }
             else
             {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_INFO,
-                                                   "TangoEvents.SetCallback() Callback was set!");
+				Debug.Log("TangoEvents.SetCallback() Callback was set!");
             }
         }
 

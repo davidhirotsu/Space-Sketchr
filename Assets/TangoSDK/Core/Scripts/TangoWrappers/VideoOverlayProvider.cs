@@ -45,8 +45,7 @@ namespace Tango
 
             if (returnValue != Common.ErrorType.TANGO_SUCCESS)
             {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR,
-                                                   "VideoOverlayProvider.ConnectTexture() Texture was not connected to camera!");
+				Debug.Log("VideoOverlayProvider.ConnectTexture() Texture was not connected to camera!");
             }
         }
 
@@ -60,8 +59,7 @@ namespace Tango
             
             if (returnValue != Common.ErrorType.TANGO_SUCCESS)
             {
-                DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR,
-                                                   "VideoOverlayProvider.UpdateTexture() Texture was not updated by camera!");
+				Debug.Log("VideoOverlayProvider.UpdateTexture() Texture was not updated by camera!");
             }
         }
 
@@ -75,13 +73,11 @@ namespace Tango
 			int returnValue = VideoOverlayAPI.TangoService_connectOnFrameAvailable(cameraId, callbackContext, onImageAvailable);
 			if(returnValue == Tango.Common.ErrorType.TANGO_SUCCESS)
 			{
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR,
-				                                   CLASS_NAME + ".SetCallback() Callback was set.");
+				Debug.Log(CLASS_NAME + ".SetCallback() Callback was set.");
 			}
 			else
 			{
-				DebugLogger.GetInstance.WriteToLog(DebugLogger.EDebugLevel.DEBUG_ERROR,
-				                                   CLASS_NAME + ".SetCallback() Callback was not set!");
+				Debug.Log(CLASS_NAME + ".SetCallback() Callback was not set!");
 			}
 
 		}
