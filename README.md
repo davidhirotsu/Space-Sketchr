@@ -5,7 +5,7 @@
 ##### 
 
 
-
+This code is able to run / export the latest version of Tango Doodle using Unity 4. 
 
 
 
